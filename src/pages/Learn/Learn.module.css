@@ -1,4 +1,4 @@
-/* Modern Tournament Chess Academy Styling */
+/* Tournament Chess Academy - Dynamic Theme-Adaptive Styling */
 
 .hubContainer {
   max-width: 1080px;
@@ -27,11 +27,11 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(83, 141, 78, 0.15);
-  border: 1px solid rgba(83, 141, 78, 0.4);
-  color: #538d4e;
+  background: rgba(83, 141, 78, 0.12);
+  border: 1px solid rgba(83, 141, 78, 0.35);
+  color: var(--accent-primary, #538d4e);
   padding: 6px 14px;
-  border-radius: 9999px;
+  border-radius: var(--radius-full, 9999px);
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -58,14 +58,14 @@
 .progressCard {
   width: 100%;
   max-width: 720px;
-  background: var(--surface-secondary, #262421);
-  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
-  border-radius: 16px;
+  background: var(--bg-surface, var(--bg-secondary));
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg, 16px);
   padding: 18px 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow-sm);
 }
 
 .progressTop {
@@ -95,10 +95,10 @@
 
 .rankLabel {
   font-size: 0.75rem;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .rankTitle {
@@ -116,21 +116,21 @@
   font-family: var(--font-mono, monospace);
   font-size: 0.9rem;
   font-weight: 700;
-  color: #538d4e;
+  color: var(--accent-primary, #538d4e);
 }
 
 .progressBar {
   width: 100%;
   height: 10px;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 9999px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-full, 9999px);
   overflow: hidden;
 }
 
 .progressFill {
   height: 100%;
-  background: linear-gradient(90deg, #538d4e, #81b64c);
-  border-radius: 9999px;
+  background: var(--accent-primary, #538d4e);
+  border-radius: var(--radius-full, 9999px);
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -138,9 +138,9 @@
 .resumeCard {
   width: 100%;
   max-width: 720px;
-  background: linear-gradient(135deg, rgba(83, 141, 78, 0.12), rgba(38, 36, 33, 0.9));
-  border: 1px solid rgba(83, 141, 78, 0.35);
-  border-radius: 14px;
+  background: var(--bg-surface, var(--bg-secondary));
+  border: 1px solid rgba(83, 141, 78, 0.4);
+  border-radius: var(--radius-md, 14px);
   padding: 14px 20px;
   display: flex;
   align-items: center;
@@ -148,19 +148,20 @@
   cursor: pointer;
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   text-align: left;
+  box-shadow: var(--shadow-sm);
 }
 
 .resumeCard:hover {
   transform: translateY(-2px);
-  border-color: #538d4e;
-  box-shadow: 0 6px 20px rgba(83, 141, 78, 0.2);
+  border-color: var(--accent-primary, #538d4e);
+  box-shadow: var(--shadow-md);
 }
 
 .resumeIconWrap {
   width: 44px;
   height: 44px;
-  border-radius: 12px;
-  background: #538d4e;
+  border-radius: var(--radius-md, 12px);
+  background: var(--accent-primary, #538d4e);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -175,8 +176,8 @@
 
 .resumeLabel {
   font-size: 0.75rem;
-  color: #81b64c;
-  font-weight: 700;
+  color: var(--accent-primary, #538d4e);
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -204,11 +205,11 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #538d4e;
+  background: var(--accent-primary, #538d4e);
   color: #ffffff;
   border: none;
   padding: 8px 16px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm, 8px);
   font-weight: 700;
   font-size: 0.9rem;
   cursor: pointer;
@@ -229,11 +230,11 @@
 }
 
 .filterPill {
-  background: var(--surface-secondary, #262421);
-  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+  background: var(--bg-surface, var(--bg-secondary));
+  border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
   padding: 8px 16px;
-  border-radius: 9999px;
+  border-radius: var(--radius-full, 9999px);
   font-size: 0.85rem;
   font-weight: 700;
   white-space: nowrap;
@@ -243,13 +244,13 @@
 
 .filterPill:hover {
   color: var(--text-primary);
-  border-color: rgba(255, 255, 255, 0.25);
+  border-color: var(--accent-primary, #538d4e);
 }
 
 .filterPillActive {
-  background: #538d4e;
+  background: var(--accent-primary, #538d4e);
   color: #ffffff !important;
-  border-color: #538d4e !important;
+  border-color: var(--accent-primary, #538d4e) !important;
 }
 
 /* Category Sections & Lesson Cards */
@@ -269,7 +270,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--border-subtle);
   padding-bottom: 8px;
 }
 
@@ -289,7 +290,7 @@
   font-family: var(--font-mono, monospace);
   font-size: 0.85rem;
   font-weight: 700;
-  color: #538d4e;
+  color: var(--accent-primary, #538d4e);
   background: rgba(83, 141, 78, 0.12);
   padding: 4px 10px;
   border-radius: 6px;
@@ -302,26 +303,27 @@
 }
 
 .lessonCard {
-  background: var(--surface-secondary, #262421);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 14px;
+  background: var(--bg-surface, var(--bg-secondary));
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md, 14px);
   padding: 18px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   cursor: pointer;
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--shadow-sm);
 }
 
 .lessonCard:hover {
   transform: translateY(-3px);
-  border-color: #538d4e;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  border-color: var(--accent-primary, #538d4e);
+  box-shadow: var(--shadow-md);
 }
 
 .lessonDone {
-  border-color: rgba(83, 141, 78, 0.4);
-  background: rgba(83, 141, 78, 0.06);
+  border-color: rgba(83, 141, 78, 0.45);
+  background: rgba(83, 141, 78, 0.05);
 }
 
 .lessonCardHeader {
@@ -342,10 +344,10 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  color: #538d4e;
+  color: var(--accent-primary, #538d4e);
   font-size: 0.78rem;
   font-weight: 700;
-  background: rgba(83, 141, 78, 0.15);
+  background: rgba(83, 141, 78, 0.12);
   padding: 3px 8px;
   border-radius: 6px;
 }
@@ -354,7 +356,7 @@
   color: var(--text-secondary);
   font-size: 0.78rem;
   font-weight: 600;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--bg-tertiary);
   padding: 3px 8px;
   border-radius: 6px;
 }
@@ -372,8 +374,8 @@
   align-items: center;
   justify-content: space-between;
   font-size: 0.78rem;
-  color: var(--text-muted, #7c7771);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
   padding-top: 8px;
 }
 
@@ -382,13 +384,13 @@
 }
 
 .categoryTag {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--bg-tertiary);
   padding: 2px 6px;
   border-radius: 4px;
 }
 
 /* ============================================================ */
-/* LESSON VIEWER (Interactive Guided Studio)                     */
+/* LESSON VIEWER (Guided Studio)                                */
 /* ============================================================ */
 
 .viewerContainer {
@@ -411,11 +413,11 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-surface, var(--bg-secondary));
+  border: 1px solid var(--border-subtle);
   color: var(--text-primary);
   padding: 8px 16px;
-  border-radius: 10px;
+  border-radius: var(--radius-md, 10px);
   font-weight: 700;
   font-size: 0.9rem;
   cursor: pointer;
@@ -423,18 +425,18 @@
 }
 
 .backBtn:hover {
-  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--accent-primary, #538d4e);
 }
 
 .completedTag {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #538d4e;
-  background: rgba(83, 141, 78, 0.15);
+  color: var(--accent-primary, #538d4e);
+  background: rgba(83, 141, 78, 0.12);
   border: 1px solid rgba(83, 141, 78, 0.35);
   padding: 6px 12px;
-  border-radius: 9999px;
+  border-radius: var(--radius-full, 9999px);
   font-size: 0.85rem;
   font-weight: 700;
 }
@@ -462,11 +464,12 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: var(--surface-secondary, #262421);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
+  background: var(--bg-surface, var(--bg-secondary));
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md, 14px);
   padding: 12px 18px;
   overflow-x: auto;
+  box-shadow: var(--shadow-sm);
 }
 
 .stepPill {
@@ -474,7 +477,7 @@
   align-items: center;
   gap: 8px;
   padding: 6px 14px;
-  border-radius: 9999px;
+  border-radius: var(--radius-full, 9999px);
   color: var(--text-secondary);
   font-size: 0.88rem;
   font-weight: 700;
@@ -491,7 +494,7 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--bg-tertiary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -500,7 +503,7 @@
 }
 
 .stepPillActive {
-  background: #538d4e;
+  background: var(--accent-primary, #538d4e);
   color: #ffffff !important;
 }
 
@@ -510,18 +513,18 @@
 }
 
 .stepPillDone {
-  color: #81b64c;
+  color: var(--accent-primary, #538d4e);
 }
 
 .stepPillDone .stepNum {
-  background: rgba(83, 141, 78, 0.25);
-  color: #81b64c;
+  background: rgba(83, 141, 78, 0.2);
+  color: var(--accent-primary, #538d4e);
 }
 
 .stepConnector {
   width: 32px;
   height: 2px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--border-subtle);
   flex-shrink: 0;
 }
 
@@ -546,11 +549,12 @@
 }
 
 .theoryBox {
-  background: var(--surface-secondary, #262421);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  background: var(--bg-surface, var(--bg-secondary));
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg, 16px);
   padding: 24px;
   text-align: left;
+  box-shadow: var(--shadow-sm);
 }
 
 .sectionHeading {
@@ -559,7 +563,7 @@
   gap: 10px;
   font-size: 1.25rem;
   font-weight: 800;
-  color: #538d4e;
+  color: var(--accent-primary, #538d4e);
   margin: 0 0 16px;
 }
 
@@ -574,7 +578,8 @@
 }
 
 .markdownBody strong {
-  color: #ffffff;
+  color: var(--text-primary);
+  font-weight: 800;
 }
 
 .stepActionBtnWrap {
@@ -582,14 +587,15 @@
 }
 
 .demoSide {
-  background: var(--surface-secondary, #262421);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  background: var(--bg-surface, var(--bg-secondary));
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg, 16px);
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 14px;
+  box-shadow: var(--shadow-sm);
 }
 
 .demoHeaderRow {
@@ -643,13 +649,13 @@
   gap: 12px;
   background: rgba(83, 141, 78, 0.12);
   border: 1px solid rgba(83, 141, 78, 0.35);
-  border-radius: 12px;
+  border-radius: var(--radius-md, 12px);
   padding: 14px 18px;
   text-align: left;
 }
 
 .instructionIcon {
-  color: #538d4e;
+  color: var(--accent-primary, #538d4e);
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -661,7 +667,7 @@
 .instructionLabel {
   font-size: 0.78rem;
   font-weight: 800;
-  color: #81b64c;
+  color: var(--accent-primary, #538d4e);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   display: block;
@@ -686,10 +692,10 @@
   align-items: center;
   gap: 10px;
   background: rgba(83, 141, 78, 0.18);
-  border: 1px solid #538d4e;
-  color: #ffffff;
+  border: 1px solid var(--accent-primary, #538d4e);
+  color: var(--text-primary);
   padding: 12px 20px;
-  border-radius: 10px;
+  border-radius: var(--radius-md, 10px);
   font-weight: 700;
   animation: fadeIn 0.2s ease;
 }
@@ -697,10 +703,11 @@
 .errorBox {
   background: rgba(239, 68, 68, 0.15);
   border: 1px solid rgba(239, 68, 68, 0.35);
-  color: #fca5a5;
+  color: var(--color-danger, #ef4444);
   padding: 10px 16px;
-  border-radius: 10px;
+  border-radius: var(--radius-md, 10px);
   font-size: 0.9rem;
+  font-weight: 600;
   animation: fadeIn 0.2s ease;
 }
 
@@ -713,9 +720,9 @@
   width: 100%;
   background: rgba(245, 158, 11, 0.12);
   border: 1px solid rgba(245, 158, 11, 0.35);
-  color: #fbbf24;
+  color: var(--color-warning, #b45309);
   padding: 12px 16px;
-  border-radius: 10px;
+  border-radius: var(--radius-md, 10px);
   font-size: 0.92rem;
   text-align: left;
   animation: fadeIn 0.2s ease;
@@ -728,7 +735,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--border-subtle);
   padding-top: 20px;
 }
 
@@ -743,25 +750,26 @@
 .quizCard {
   width: 100%;
   max-width: 600px;
-  background: var(--surface-secondary, #262421);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  background: var(--bg-surface, var(--bg-secondary));
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg, 16px);
   padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 18px;
   text-align: left;
+  box-shadow: var(--shadow-sm);
 }
 
 .quizHeader {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #538d4e;
+  color: var(--accent-primary, #538d4e);
 }
 
 .quizIcon {
-  color: #538d4e;
+  color: var(--accent-primary, #538d4e);
 }
 
 .quizTitle {
@@ -789,9 +797,9 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md, 12px);
   padding: 14px 18px;
   color: var(--text-primary);
   cursor: pointer;
@@ -800,15 +808,16 @@
 }
 
 .optionBtn:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: var(--accent-primary, #538d4e);
+  background: var(--bg-tertiary);
 }
 
 .optionIndex {
   width: 28px;
   height: 28px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm, 8px);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -820,36 +829,37 @@
 .optionContent {
   flex: 1;
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
 .selectedOption {
-  border-color: #538d4e !important;
+  border-color: var(--accent-primary, #538d4e) !important;
   background: rgba(83, 141, 78, 0.12) !important;
 }
 
 .correctOption {
-  border-color: #538d4e !important;
-  background: rgba(83, 141, 78, 0.2) !important;
+  border-color: var(--accent-primary, #538d4e) !important;
+  background: rgba(83, 141, 78, 0.18) !important;
 }
 
 .wrongOption {
-  border-color: #ef4444 !important;
-  background: rgba(239, 68, 68, 0.18) !important;
+  border-color: var(--color-danger, #ef4444) !important;
+  background: rgba(239, 68, 68, 0.14) !important;
 }
 
 .checkIcon {
-  color: #538d4e;
+  color: var(--accent-primary, #538d4e);
   flex-shrink: 0;
 }
 
 .crossIcon {
-  color: #ef4444;
+  color: var(--color-danger, #ef4444);
   flex-shrink: 0;
 }
 
 .feedbackBox {
-  border-radius: 12px;
+  border-radius: var(--radius-md, 12px);
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -858,14 +868,14 @@
 
 .feedbackSuccess {
   background: rgba(83, 141, 78, 0.15);
-  border: 1px solid #538d4e;
-  color: #ffffff;
+  border: 1px solid var(--accent-primary, #538d4e);
+  color: var(--text-primary);
 }
 
 .feedbackError {
   background: rgba(239, 68, 68, 0.15);
   border: 1px solid rgba(239, 68, 68, 0.35);
-  color: #fca5a5;
+  color: var(--text-primary);
 }
 
 .feedbackBox p {
@@ -888,16 +898,16 @@
 .masteryCelebrationCard {
   width: 100%;
   max-width: 600px;
-  background: linear-gradient(135deg, rgba(83, 141, 78, 0.25), rgba(38, 36, 33, 0.95));
-  border: 2px solid #538d4e;
-  border-radius: 18px;
+  background: var(--bg-surface, var(--bg-secondary));
+  border: 2px solid var(--accent-primary, #538d4e);
+  border-radius: var(--radius-xl, 18px);
   padding: 28px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: 12px;
-  box-shadow: 0 8px 32px rgba(83, 141, 78, 0.25);
+  box-shadow: var(--shadow-lg);
   animation: fadeIn 0.3s ease;
 }
 
@@ -905,7 +915,7 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: #538d4e;
+  background: var(--accent-primary, #538d4e);
   color: #ffffff;
   display: flex;
   align-items: center;

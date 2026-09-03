@@ -36,7 +36,8 @@ export function LessonViewer({ lesson, onBack, onNextLesson, hasNextLesson, next
 
   // Reset demo state when lesson changes
   useEffect(() => {
-    setDemoFen(lesson.demoFen);
+    const initialFen = lesson.practice?.fen || lesson.demoFen;
+    setDemoFen(initialFen);
     setDemoLastMove(null);
     setIsDemoPlayed(false);
     setPracticeDone(false);
@@ -48,21 +49,22 @@ export function LessonViewer({ lesson, onBack, onNextLesson, hasNextLesson, next
   const handlePlayDemo = () => {
     if (!lesson.practice?.expectedMove) return;
     try {
-      const g = new Chess(lesson.demoFen);
-      const move = g.move(lesson.practice.expectedMove);
+      const initialFen = lesson.practice?.fen || lesson.demoFen;
+      const g = new Chess(initialFen);
+      const move = g.move({ ...lesson.practice.expectedMove, promotion: 'q' });
       if (move) {
         setDemoFen(g.fen());
         setDemoLastMove(lesson.practice.expectedMove);
         setIsDemoPlayed(true);
         playSound('move');
       }
-    } catch {
-      // Fallback
+    } catch (e) {
+      console.error('Demo move error:', e);
     }
   };
 
   const handleResetDemo = () => {
-    setDemoFen(lesson.demoFen);
+    setDemoFen(lesson.practice?.fen || lesson.demoFen);
     setDemoLastMove(null);
     setIsDemoPlayed(false);
     playSound('click');

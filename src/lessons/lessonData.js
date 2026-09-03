@@ -1,4 +1,4 @@
-﻿// 23 Comprehensive Interactive Chess Lessons with Demonstrations, Practice Drills, and Mini-Quizzes
+// 23 Comprehensive Interactive Chess Lessons with Demonstrations, Practice Drills, and Mini-Quizzes
 
 export const LESSON_CATEGORIES = [
   { id: 'fundamentals', name: 'The Basics', desc: 'Board, coordinates, and core principles' },
@@ -21,9 +21,9 @@ export const LESSONS = [
 - **Ranks**: The 8 horizontal rows, numbered 1 to 8 (Rank 1 is White's back row, Rank 8 is Black's back row).
 - **Diagonals**: Connected slanting lines of squares of the same color.
 - **Golden Rule**: Always set up the board so that there is a **white square in the bottom-right corner** ("white on right").`,
-    demoFen: '8/8/8/8/8/8/8/8 w - - 0 1',
+    demoFen: '4k3/8/8/4P3/8/8/8/4K3 w - - 0 1',
     practice: {
-      fen: '8/8/8/4P3/8/8/8/8 w - - 0 1',
+      fen: '4k3/8/8/4P3/8/8/8/4K3 w - - 0 1',
       instruction: 'The center squares (d4, d5, e4, e5) are the most crucial battlegrounds. Push the White pawn from e5 to e6 to advance further!',
       expectedMove: { from: 'e5', to: 'e6' },
       hint: 'Click the pawn on e5 and move it one square forward to e6.'
@@ -81,9 +81,9 @@ Algebraic chess notation allows players worldwide to record games, follow master
 - **Forward March**: Pawns only move forward, never backward!
 - **Initial Double Step**: On its very first move, a pawn can advance either **1 or 2 squares** forward. After that, it can only move 1 square at a time.
 - **Diagonal Capture**: Unlike any other piece, the pawn does NOT capture the way it moves. Pawns capture **one square diagonally forward**.`,
-    demoFen: '8/8/8/4p3/3P4/8/8/8 w - - 0 1',
+    demoFen: '4k3/8/8/8/4p3/3P4/8/4K3 w - - 0 1',
     practice: {
-      fen: '8/8/8/8/4p3/3P4/8/8 w - - 0 1',
+      fen: '4k3/8/8/8/4p3/3P4/8/4K3 w - - 0 1',
       instruction: 'Capture the black pawn on e4 diagonally with your white pawn on d3!',
       expectedMove: { from: 'd3', to: 'e4' },
       hint: 'Pawns capture one square diagonally forward. Move d3 to e4.'
@@ -143,9 +143,9 @@ Algebraic chess notation allows players worldwide to record games, follow master
 - **Diagonal Flight**: The Bishop can move as many unobstructed squares as desired, but **only diagonally**.
 - **Bound to One Color**: A Bishop can never change square colors. A light-squared bishop stays on light squares for the entire game.
 - **Value**: 3 points. At their best on open boards with long diagonals.`,
-    demoFen: '8/8/8/4B3/8/8/8/8 w - - 0 1',
+    demoFen: 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 3 3',
     practice: {
-      fen: 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3',
+      fen: 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 3 3',
       instruction: 'Play the famous Ruy Lopez Bishop attack: capture the Knight on c6 with your Bishop on b5!',
       expectedMove: { from: 'b5', to: 'c6' },
       hint: 'Move the white bishop on b5 diagonally down to take the knight on c6.'
