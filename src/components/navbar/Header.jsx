@@ -3,6 +3,7 @@ import { Moon, Sun, Volume2, VolumeX, BookOpen, Bot, Users, Settings, ArrowLeft,
 import { DownloadModal } from '../download/DownloadModal';
 import { useSettings } from '../../context/SettingsContext';
 import { useSound } from '../../context/SoundContext';
+import { isNativeApp } from '../../utilities/platform';
 import styles from './Header.module.css';
 
 export function Header({ currentView, setView, showBack = false, onBack }) {
@@ -85,17 +86,19 @@ export function Header({ currentView, setView, showBack = false, onBack }) {
 
         {/* Quick Action Icons */}
         <div className={styles.actions}>
-          <button
-            className={styles.downloadHeaderBtn}
-            onClick={() => {
-              playSound('click');
-              setDownloadOpen(true);
-            }}
-            title="Download App"
-          >
-            <Download size={16} />
-            <span className={styles.apkText}>App</span>
-          </button>
+          {!isNativeApp() && (
+            <button
+              className={styles.downloadHeaderBtn}
+              onClick={() => {
+                playSound('click');
+                setDownloadOpen(true);
+              }}
+              title="Download App"
+            >
+              <Download size={16} />
+              <span className={styles.apkText}>App</span>
+            </button>
+          )}
 
           <button
             className={styles.actionBtn}

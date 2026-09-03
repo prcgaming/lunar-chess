@@ -4,6 +4,7 @@ import { DownloadModal } from '../../components/download/DownloadModal';
 import { loadActiveGame } from '../../utilities/storage';
 import { useSound } from '../../context/SoundContext';
 import { useSettings } from '../../context/SettingsContext';
+import { isNativeApp } from '../../utilities/platform';
 import styles from './Home.module.css';
 
 export function Home({ onNavigate }) {
@@ -96,21 +97,23 @@ export function Home({ onNavigate }) {
           </button>
         </div>
 
-        {/* Download Now Button (Opens options modal) */}
-        <div className={styles.downloadHeroWrap}>
-          <button
-            className={styles.downloadApkBtn}
-            onClick={() => {
-              playSound('click');
-              setDownloadOpen(true);
-            }}
-            title="Download Lunar Chess"
-          >
-            <Smartphone size={19} />
-            <span>Download Now</span>
-            <Download size={16} />
-          </button>
-        </div>
+        {/* Download Now Button (Only shown on Web, hidden in Android APK) */}
+        {!isNativeApp() && (
+          <div className={styles.downloadHeroWrap}>
+            <button
+              className={styles.downloadApkBtn}
+              onClick={() => {
+                playSound('click');
+                setDownloadOpen(true);
+              }}
+              title="Download Lunar Chess"
+            >
+              <Smartphone size={19} />
+              <span>Download Now</span>
+              <Download size={16} />
+            </button>
+          </div>
+        )}
 
         {/* Resume Banner */}
         {activeSavedGame && (
