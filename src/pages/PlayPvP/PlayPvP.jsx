@@ -148,9 +148,8 @@ export function PlayPvP({ onHome }) {
   }, [isFullScreen]);
 
   // Start match
-  const handleStartMatch = (selectedSeconds, autoFlip) => {
+  const handleStartMatch = (selectedSeconds) => {
     setTimeControl(selectedSeconds);
-    setAutoFlipBoard(autoFlip);
     setBoardOrientation('white');
     resetGame();
     timerReset(selectedSeconds);

@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { TIME_CONTROLS } from '../../chess-engine/chessConstants';
 import { Modal } from '../../components/common/Modal';
 import { Button } from '../../components/common/Button';
@@ -16,12 +16,9 @@ const ICON_MAP = {
 };
 
 export function TimeControlModal({ isOpen, onSelectTime, onCancel }) {
-  const [selected, setSelected] = useState('10m');
-  const [autoFlip, setAutoFlip] = useState(false);
-
   const handleStart = () => {
     const found = TIME_CONTROLS.find((t) => t.id === selected) || TIME_CONTROLS[3];
-    onSelectTime(found.seconds, autoFlip);
+    onSelectTime(found.seconds);
   };
 
   return (
@@ -47,17 +44,6 @@ export function TimeControlModal({ isOpen, onSelectTime, onCancel }) {
             );
           })}
         </div>
-
-        {/* Auto Flip Board Toggle */}
-        <label className={styles.checkboxLabel}>
-          <input
-            type="checkbox"
-            checked={autoFlip}
-            onChange={(e) => setAutoFlip(e.target.checked)}
-            className={styles.checkbox}
-          />
-          <span>Auto-flip board each turn (Pass & Play)</span>
-        </label>
 
         <div className={styles.modalActions}>
           <Button variant="ghost" onClick={onCancel}>
