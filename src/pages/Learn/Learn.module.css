@@ -1,6 +1,7 @@
 /* Tournament Chess Academy - Dynamic Theme-Adaptive Styling */
 
 .hubContainer {
+  width: 100%;
   max-width: 1080px;
   margin: 0 auto;
   padding: 24px 16px 64px;
@@ -8,6 +9,8 @@
   flex-direction: column;
   gap: 32px;
   animation: fadeIn 0.25s ease;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 @keyframes fadeIn {
@@ -518,6 +521,7 @@
 /* ============================================================ */
 
 .viewerContainer {
+  width: 100%;
   max-width: 1080px;
   margin: 0 auto;
   padding: 20px 16px 64px;
@@ -525,6 +529,8 @@
   flex-direction: column;
   gap: 24px;
   animation: fadeIn 0.25s ease;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .viewerHeader {
@@ -703,6 +709,41 @@
 
 .markdownBody strong {
   color: var(--text-primary);
+  font-weight: 800;
+}
+
+.theoryFormatted {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.theoryPara {
+  margin: 0;
+  color: var(--text-primary);
+  line-height: 1.65;
+}
+
+.theoryList {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style-type: disc;
+}
+
+.theoryListItem {
+  line-height: 1.55;
+  color: var(--text-primary);
+}
+
+.theoryListItem strong,
+.theoryPara strong {
+  color: var(--accent-primary, #538d4e);
   font-weight: 800;
 }
 
@@ -1093,39 +1134,82 @@
 @media (max-width: 768px) {
   .hubContainer {
     padding: 14px 10px 48px;
-    gap: 20px;
+    gap: 18px;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
 
   .hubTitle {
-    font-size: 1.65rem;
+    font-size: 1.55rem;
   }
 
   .hubSubtitle {
-    font-size: 0.92rem;
-    margin-bottom: 12px;
+    font-size: 0.88rem;
+    line-height: 1.4;
+    margin-bottom: 8px;
   }
 
   .progressCard {
-    padding: 14px 16px;
+    padding: 12px 14px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .progressTop {
-    flex-direction: column;
-    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     gap: 8px;
+    width: 100%;
+  }
+
+  .rankTitle {
+    font-size: 0.95rem;
   }
 
   .fractionWrap {
-    align-self: flex-end;
+    align-self: center;
+    flex-shrink: 0;
+  }
+
+  .progressFraction {
+    font-size: 0.8rem;
+    white-space: nowrap;
   }
 
   .resumeCard {
-    padding: 12px 14px;
-    gap: 12px;
+    padding: 10px 12px;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .resumeIconWrap {
+    width: 36px;
+    height: 36px;
+  }
+
+  .resumeText {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
   }
 
   .resumeLessonTitle {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+  }
+
+  .resumeSubtitle {
+    font-size: 0.8rem;
+  }
+
+  .resumeActionBtn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    flex-shrink: 0;
   }
 
   .lessonGrid {
@@ -1136,40 +1220,60 @@
   .viewerContainer {
     padding: 12px 8px 48px;
     gap: 16px;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
 
   .lessonTitle {
-    font-size: 1.45rem;
+    font-size: 1.4rem;
   }
 
   .lessonSubtitle {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
   }
 
   .stepProgressContainer {
-    padding: 8px 10px;
+    padding: 8px 8px;
     gap: 4px;
     justify-content: flex-start;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .stepPill {
-    padding: 4px 10px;
-    font-size: 0.78rem;
-    gap: 6px;
+    padding: 4px 8px;
+    font-size: 0.76rem;
+    gap: 5px;
   }
 
   .stepConnector {
-    width: 14px;
+    width: 10px;
   }
 
   .stepLayout {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .theoryBox {
-    padding: 16px 14px;
+    padding: 14px 12px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .theoryFormatted {
+    font-size: 0.95rem;
+    gap: 10px;
+  }
+
+  .theoryList {
+    padding-left: 16px;
+    gap: 8px;
   }
 
   .markdownBody {
@@ -1177,34 +1281,72 @@
   }
 
   .demoSide {
-    padding: 14px 8px;
+    padding: 12px 8px;
     width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .demoHeaderRow {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .demoTitle {
+    font-size: 0.95rem;
+  }
+
+  .demoBoardWrap {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .boardBox {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
   }
 
   .instructionBanner {
-    padding: 10px 12px;
+    padding: 10px 10px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .instructionText p {
-    font-size: 0.88rem;
+    font-size: 0.86rem;
   }
 
   .practiceWrapper {
     width: 100%;
     padding: 0;
+    box-sizing: border-box;
   }
 
   .quizCard {
-    padding: 16px 14px;
-    gap: 14px;
+    padding: 14px 12px;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .optionBtn {
-    padding: 12px 14px;
+    padding: 10px 12px;
   }
 
   .optionContent {
-    font-size: 0.88rem;
+    font-size: 0.86rem;
   }
 
   .stepFooterRow {
@@ -1217,8 +1359,11 @@
   }
 
   .filterBar {
+    display: flex;
     flex-wrap: wrap;
     gap: 6px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .filterPill {
@@ -1227,21 +1372,30 @@
   }
 
   .bookIndexRow {
-    padding: 10px 12px;
-    gap: 10px;
+    padding: 10px 10px;
+    gap: 8px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .bookIndexNumber {
     width: 28px;
     height: 28px;
     font-size: 0.78rem;
+    flex-shrink: 0;
+  }
+
+  .bookIndexContent {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
   }
 
   .bookIndexTitle {
-    font-size: 0.92rem;
+    font-size: 0.9rem;
   }
 
   .bookIndexDesc {
-    font-size: 0.78rem;
+    font-size: 0.76rem;
   }
 }

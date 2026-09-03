@@ -16,23 +16,39 @@ export function InteractiveLessonBoard({ practice, onComplete }) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [boardWidth, setBoardWidth] = useState(360);
+  const [boardWidth, setBoardWidth] = useState(320);
 
   const containerRef = useRef(null);
+  const boardBoxRef = useRef(null);
   const { playSound } = useSound();
 
   // Fluid responsive board width calculation for mobile & desktop
   useEffect(() => {
     const updateSize = () => {
+      const el = boardBoxRef.current;
       const screenW = window.innerWidth;
       const screenH = window.innerHeight;
-      const availableW = screenW <= 600 ? screenW - 28 : Math.min(460, screenW - 48);
-      const maxHeight = Math.floor(screenH * 0.52);
-      setBoardWidth(Math.max(260, Math.min(availableW, maxHeight)));
+      const maxHeight = Math.floor(screenH * 0.48);
+
+      let availW = screenW - 40;
+      if (el && el.clientWidth > 0) {
+        availW = el.clientWidth - 8;
+      }
+      const target = Math.floor(Math.max(200, Math.min(availW, maxHeight, 440)));
+      setBoardWidth(target);
     };
+
     updateSize();
     window.addEventListener('resize', updateSize);
-    return () => window.removeEventListener('resize', updateSize);
+    let ro;
+    if (boardBoxRef.current && window.ResizeObserver) {
+      ro = new ResizeObserver(updateSize);
+      ro.observe(boardBoxRef.current);
+    }
+    return () => {
+      window.removeEventListener('resize', updateSize);
+      if (ro) ro.disconnect();
+    };
   }, []);
 
   // Reset when practice changes
@@ -155,7 +171,7 @@ export function InteractiveLessonBoard({ practice, onComplete }) {
         </div>
       </div>
 
-      <div className={styles.boardBox}>
+      <div className={styles.boardBox} ref={boardBoxRef}>
         <ChessboardView
           fen={fen}
           orientation={isWhiteTurn ? 'white' : 'black'}

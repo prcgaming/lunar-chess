@@ -9,6 +9,52 @@ import { markLessonCompleted } from '../../utilities/storage';
 import { useSound } from '../../context/SoundContext';
 import styles from './Learn.module.css';
 
+function FormattedTheory({ text }) {
+  if (!text) return null;
+  const blocks = text.split(/\n\n+/);
+
+  const formatInline = (str) => {
+    const parts = str.split(/(\*\*[^*]+\*\*)/g);
+    return parts.map((part, idx) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={idx}>{part.slice(2, -2)}</strong>;
+      }
+      return part;
+    });
+  };
+
+  return (
+    <div className={styles.theoryFormatted}>
+      {blocks.map((block, i) => {
+        const rawLines = block.split('\n').map((l) => l.trim()).filter(Boolean);
+        const isList = rawLines.some((l) => l.startsWith('- ') || l.startsWith('* '));
+
+        if (isList) {
+          return (
+            <ul key={i} className={styles.theoryList}>
+              {rawLines.map((line, j) => {
+                const cleanLine = line.replace(/^[-*]\s+/, '');
+                return <li key={j} className={styles.theoryListItem}>{formatInline(cleanLine)}</li>;
+              })}
+            </ul>
+          );
+        }
+
+        return (
+          <p key={i} className={styles.theoryPara}>
+            {rawLines.map((line, k) => (
+              <React.Fragment key={k}>
+                {formatInline(line)}
+                {k < rawLines.length - 1 && <br />}
+              </React.Fragment>
+            ))}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
 export function LessonViewer({ lesson, onBack, onNextLesson, hasNextLesson, nextLessonTitle, isCompleted, onCompletedUpdate }) {
   const [activeStep, setActiveStep] = useState(1); // 1 = Theory & Demo, 2 = Practice Drill, 3 = Quiz
   const [practiceDone, setPracticeDone] = useState(false);
@@ -16,23 +62,38 @@ export function LessonViewer({ lesson, onBack, onNextLesson, hasNextLesson, next
   const [demoFen, setDemoFen] = useState(lesson.demoFen);
   const [demoLastMove, setDemoLastMove] = useState(null);
   const [isDemoPlayed, setIsDemoPlayed] = useState(false);
-  const [boardWidth, setBoardWidth] = useState(360);
+  const [boardWidth, setBoardWidth] = useState(320);
 
-  const demoWrapRef = useRef(null);
+  const demoBoardWrapRef = useRef(null);
   const { playSound } = useSound();
 
-  // Responsive board calculation for Demo
+  // Bulletproof responsive board calculation for Demo
   useEffect(() => {
     const updateSize = () => {
+      const el = demoBoardWrapRef.current;
       const screenW = window.innerWidth;
       const screenH = window.innerHeight;
-      const availableW = screenW <= 600 ? screenW - 28 : Math.min(420, screenW - 48);
-      const maxHeight = Math.floor(screenH * 0.48);
-      setBoardWidth(Math.max(260, Math.min(availableW, maxHeight)));
+      const maxHeight = Math.floor(screenH * 0.46);
+
+      let availW = screenW - 40;
+      if (el && el.clientWidth > 0) {
+        availW = el.clientWidth - 8;
+      }
+      const target = Math.floor(Math.max(200, Math.min(availW, maxHeight, 420)));
+      setBoardWidth(target);
     };
+
     updateSize();
     window.addEventListener('resize', updateSize);
-    return () => window.removeEventListener('resize', updateSize);
+    let ro;
+    if (demoBoardWrapRef.current && window.ResizeObserver) {
+      ro = new ResizeObserver(updateSize);
+      ro.observe(demoBoardWrapRef.current);
+    }
+    return () => {
+      window.removeEventListener('resize', updateSize);
+      if (ro) ro.disconnect();
+    };
   }, [activeStep]);
 
   // Reset demo state when lesson changes
@@ -144,9 +205,7 @@ export function LessonViewer({ lesson, onBack, onNextLesson, hasNextLesson, next
                 <span>The Core Principle</span>
               </h3>
               <div className={styles.markdownBody}>
-                {lesson.theory.split('\n\n').map((para, i) => (
-                  <p key={i}>{para}</p>
-                ))}
+                <FormattedTheory text={lesson.theory} />
               </div>
             </div>
 
@@ -165,7 +224,7 @@ export function LessonViewer({ lesson, onBack, onNextLesson, hasNextLesson, next
             </div>
           </div>
 
-          <div className={styles.demoSide} ref={demoWrapRef}>
+          <div className={styles.demoSide}>
             <div className={styles.demoHeaderRow}>
               <h4 className={styles.demoTitle}>Demonstration Board</h4>
               <div className={styles.demoControls}>
@@ -191,7 +250,7 @@ export function LessonViewer({ lesson, onBack, onNextLesson, hasNextLesson, next
               </div>
             </div>
 
-            <div className={styles.demoBoardWrap}>
+            <div className={styles.demoBoardWrap} ref={demoBoardWrapRef}>
               <ChessboardView
                 fen={demoFen}
                 lastMove={demoLastMove}
