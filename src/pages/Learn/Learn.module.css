@@ -1,0 +1,558 @@
+﻿.hubContainer {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  animation: fadeIn 0.25s ease;
+}
+
+.hubHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hubIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, #059669, #34d399);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+}
+
+.hubTitle {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.hubSubtitle {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  max-width: 500px;
+  margin-bottom: 24px;
+}
+
+/* Progress card */
+.progressCard {
+  width: 100%;
+  max-width: 620px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.progressTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progressLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.awardIcon {
+  color: #f59e0b;
+}
+
+.progressFraction {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+}
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--accent-gradient);
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+/* Categories & Lesson Cards */
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.categorySection {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.catHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.catName {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.catDesc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.lessonGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.lessonCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.lessonCard:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.lessonDone {
+  border-color: rgba(16, 185, 129, 0.35);
+  background: rgba(16, 185, 129, 0.04);
+}
+
+.lessonCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lessonCardTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.doneIcon {
+  color: var(--color-success);
+  flex-shrink: 0;
+}
+
+.lessonCardSub {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  flex: 1;
+}
+
+.lessonCardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 8px;
+  margin-top: 4px;
+}
+
+.arrow {
+  transition: transform var(--transition-fast);
+}
+
+.lessonCard:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Lesson Viewer Styling */
+.viewerContainer {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 16px 16px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: fadeIn 0.25s ease;
+}
+
+.viewerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 6px 10px;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.backBtn:hover {
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+}
+
+.completedTag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-success);
+  background: rgba(16, 185, 129, 0.15);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lessonTitle {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.lessonSubtitle {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.tabsNav {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 8px;
+  overflow-x: auto;
+}
+
+.tabBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tabBtn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tabActive {
+  color: var(--accent-primary);
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+.tabContent {
+  padding-top: 10px;
+}
+
+.theoryPane {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.markdownBody {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.demoSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 18px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.demoTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.demoBoardWrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.tabFooter {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+/* Interactive Practice Board Styling */
+.practiceContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.instructionBanner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  width: 100%;
+}
+
+.sparkleIcon {
+  color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+.boardBox {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.successBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: var(--radius-md);
+  color: var(--color-success);
+  font-weight: 700;
+  width: 100%;
+}
+
+.errorBox {
+  padding: 10px 16px;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: var(--radius-md);
+  color: var(--color-danger);
+  font-size: 0.9rem;
+  font-weight: 600;
+  width: 100%;
+}
+
+.practiceActions {
+  display: flex;
+  gap: 12px;
+}
+
+.hintBox {
+  padding: 10px 14px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  border-left: 3px solid var(--accent-primary);
+  width: 100%;
+}
+
+/* Quiz Pane Styling */
+.quizCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.quizHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quizIcon {
+  color: var(--accent-primary);
+}
+
+.quizTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.questionText {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.45;
+}
+
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.optionBtn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  text-align: left;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.optionBtn:hover:not(:disabled) {
+  border-color: var(--accent-primary);
+  background: var(--bg-surface);
+}
+
+.selectedOption {
+  border-color: var(--accent-primary);
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--accent-primary);
+}
+
+.correctOption {
+  border-color: var(--color-success);
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--color-success);
+}
+
+.wrongOption {
+  border-color: var(--color-danger);
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--color-danger);
+}
+
+.optionIndex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 700;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.optionContent {
+  flex: 1;
+}
+
+.checkIcon {
+  color: var(--color-success);
+}
+
+.crossIcon {
+  color: var(--color-danger);
+}
+
+.feedbackBox {
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.feedbackSuccess {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: var(--color-success);
+}
+
+.feedbackError {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: var(--color-danger);
+}
+
+.retryBtn {
+  align-self: flex-start;
+  margin-top: 6px;
+}
+
+.quizActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.nextLessonWrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}

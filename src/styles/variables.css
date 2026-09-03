@@ -1,0 +1,161 @@
+:root {
+  /* Font Families */
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+  /* Global Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.12s ease;
+  --transition-normal: 0.2s ease;
+  --transition-slow: 0.3s ease;
+
+  /* Natural Clean Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+  /* Safe Area for Mobile */
+  --sat: env(safe-area-inset-top, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+}
+
+/* Default / Classic Chess Theme (Natural Warm Wood, Leather & Tournament Green) */
+[data-theme="classic"], :root:not([data-theme="dark"]):not([data-theme="light"]) {
+  --bg-primary: #1c1815;
+  --bg-secondary: #26211c;
+  --bg-tertiary: #332c25;
+  --bg-surface: #2a241e;
+  --bg-overlay: rgba(28, 24, 21, 0.94);
+
+  --text-primary: #faf6f0;
+  --text-secondary: #d8cdbf;
+  --text-muted: #a09282;
+  --text-inverse: #1c1815;
+
+  /* Crisp Tournament Pop Green & Brass Gold */
+  --accent-primary: #538d4e;
+  --accent-secondary: #d4af37;
+  --accent-hover: #447440;
+  --accent-gradient: #538d4e;
+  --accent-gradient-hover: #447440;
+
+  --border-subtle: rgba(212, 185, 150, 0.16);
+  --border-bright: rgba(83, 141, 78, 0.5);
+
+  --glass-bg: #26211c;
+  --glass-border: rgba(212, 185, 150, 0.18);
+  --glass-blur: none;
+
+  --color-success: #538d4e;
+  --color-warning: #f59e0b;
+  --color-danger: #e04434;
+  --color-info: #4a7c59;
+
+  --board-shadow: 0 12px 36px rgba(0, 0, 0, 0.65), 0 0 0 5px #3a2e22;
+}
+
+/* Dark Tournament Theme (Rich Charcoal & Crisp Green) */
+[data-theme="dark"] {
+  --bg-primary: #151619;
+  --bg-secondary: #1d1f24;
+  --bg-tertiary: #272a31;
+  --bg-surface: #20232a;
+  --bg-overlay: rgba(21, 22, 25, 0.94);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --text-inverse: #151619;
+
+  --accent-primary: #538d4e;
+  --accent-secondary: #d4af37;
+  --accent-hover: #447440;
+  --accent-gradient: #538d4e;
+  --accent-gradient-hover: #447440;
+
+  --border-subtle: rgba(255, 255, 255, 0.09);
+  --border-bright: rgba(83, 141, 78, 0.45);
+
+  --glass-bg: #1d1f24;
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-blur: none;
+
+  --color-success: #538d4e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #0284c7;
+
+  --board-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+}
+
+/* Light Tournament Theme (Ivory, Cream & Crisp Pop Green) */
+[data-theme="light"] {
+  --bg-primary: #f2eee5;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #e4ddd0;
+  --bg-surface: #faf8f5;
+  --bg-overlay: rgba(242, 238, 229, 0.94);
+
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --text-muted: #78716c;
+  --text-inverse: #ffffff;
+
+  --accent-primary: #467941;
+  --accent-secondary: #b45309;
+  --accent-hover: #376133;
+  --accent-gradient: #467941;
+  --accent-gradient-hover: #376133;
+
+  --border-subtle: rgba(0, 0, 0, 0.12);
+  --border-bright: rgba(70, 121, 65, 0.45);
+
+  --glass-bg: #ffffff;
+  --glass-border: rgba(0, 0, 0, 0.12);
+  --glass-blur: none;
+
+  --color-success: #467941;
+  --color-warning: #b45309;
+  --color-danger: #dc2626;
+  --color-info: #0369a1;
+
+  --board-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* Real High-Contrast Pop Board Themes */
+[data-board-theme="emerald"] {
+  --board-light: #eeeed2;
+  --board-dark: #769656;
+  --board-highlight-last: rgba(247, 247, 105, 0.68);
+  --board-highlight-selected: rgba(247, 247, 105, 0.78);
+}
+
+[data-board-theme="classic"] {
+  --board-light: #f0d9b5;
+  --board-dark: #b58863;
+  --board-highlight-last: rgba(205, 210, 106, 0.72);
+  --board-highlight-selected: rgba(214, 180, 71, 0.78);
+}
+
+[data-board-theme="wood"] {
+  --board-light: #e8d0aa;
+  --board-dark: #9c663b;
+  --board-highlight-last: rgba(212, 175, 55, 0.7);
+  --board-highlight-selected: rgba(230, 190, 80, 0.75);
+}
+
+[data-board-theme="slate"] {
+  --board-light: #dee3e6;
+  --board-dark: #4e79a7;
+  --board-highlight-last: rgba(130, 200, 255, 0.7);
+  --board-highlight-selected: rgba(100, 180, 255, 0.75);
+}

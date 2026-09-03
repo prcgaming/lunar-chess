@@ -1,0 +1,60 @@
+﻿.container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 6px 14px;
+  transition: all var(--transition-fast);
+}
+
+.active {
+  background: var(--bg-surface);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+}
+
+.lowTime {
+  border-color: var(--color-danger);
+  background: rgba(239, 68, 68, 0.15);
+  animation: pulseLowTime 1s infinite alternate;
+}
+
+.lowTime .timeText {
+  color: var(--color-danger);
+}
+
+.label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.timeBox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.clockIcon {
+  color: var(--text-muted);
+}
+
+.active .clockIcon {
+  color: var(--accent-primary);
+}
+
+.timeText {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+@keyframes pulseLowTime {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0.75; transform: scale(1.02); }
+}

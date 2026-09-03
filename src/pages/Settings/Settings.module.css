@@ -1,0 +1,341 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px 16px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  animation: fadeIn 0.25s ease;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.headerIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, #d97706, #fbbf24);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.35);
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.section {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sectionIcon {
+  color: var(--accent-primary);
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.sectionDesc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+/* Preset Cards */
+.presetGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.presetBtn {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  text-align: left;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.presetBtn:hover {
+  border-color: var(--accent-primary);
+  background: rgba(56, 189, 248, 0.05);
+}
+
+.presetActive {
+  border-color: var(--accent-primary);
+  background: rgba(56, 189, 248, 0.12);
+}
+
+.presetBtn strong {
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.presetBtn span {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+/* 2D / 3D Piece Styles Grid */
+.pieceStyleGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.pieceStyleCard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  text-align: left;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.pieceStyleCard:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+}
+
+.pieceStyleActive {
+  border-color: var(--accent-primary);
+  background: rgba(56, 189, 248, 0.12);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+}
+
+.piecePreviewBadge {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-md);
+  background: var(--bg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pieceBadgeGlyph {
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--accent-primary);
+}
+
+.dimensionTag {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: var(--radius-full);
+  background: var(--accent-gradient);
+  color: #ffffff;
+}
+
+.pieceStyleInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pieceStyleInfo strong {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.pieceStyleInfo span {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* Setting Rows */
+.settingRow {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+.rowLabel strong {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.rowLabel p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.themeGroup {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.themeOption {
+  padding: 8px 16px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.themeOption:hover {
+  color: var(--text-primary);
+}
+
+.themeOptionActive {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #ffffff;
+}
+
+/* Board Theme Cards */
+.boardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.boardThemeCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.boardThemeCard:hover {
+  border-color: var(--accent-primary);
+}
+
+.boardThemeActive {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+  background: rgba(56, 189, 248, 0.08);
+}
+
+.colorPreview {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.boardThemeCard span {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.volumeSlider {
+  width: 100%;
+  accent-color: var(--accent-primary);
+  cursor: pointer;
+}
+
+.switchesList {
+  display: flex;
+  flex-direction: column;
+  divide-y: 1px solid var(--border-subtle);
+}
+
+.soundItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.soundItem > div {
+  flex: 1;
+}
+
+.testBtn {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  margin-left: 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.testBtn:hover {
+  background: var(--accent-primary);
+  color: #ffffff;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 6px 0;
+}
+
+.resetWrap {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .presetGrid, .pieceStyleGrid {
+    grid-template-columns: 1fr;
+  }
+  .boardGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

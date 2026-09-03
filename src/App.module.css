@@ -1,0 +1,65 @@
+﻿.appContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 70px; /* Space for mobile bottom bar */
+}
+
+/* Mobile Bottom Navigation Bar */
+.bottomNav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--glass-border);
+  padding: 8px 12px calc(8px + var(--sab));
+  justify-content: space-around;
+  align-items: center;
+}
+
+.bottomNavItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  padding: 4px 10px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.bottomNavItem:hover {
+  color: var(--text-primary);
+}
+
+.bottomNavActive {
+  color: var(--accent-primary);
+}
+
+@media (max-width: 768px) {
+  .bottomNav {
+    display: flex;
+  }
+}
+
+@media (min-width: 769px) {
+  .mainContent {
+    padding-bottom: 24px;
+  }
+}

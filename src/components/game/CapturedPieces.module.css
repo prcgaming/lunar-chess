@@ -1,0 +1,30 @@
+﻿.container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 24px;
+}
+
+.pieceRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1px;
+}
+
+.pieceSymbol {
+  font-size: 1.15rem;
+  line-height: 1;
+  color: var(--text-primary);
+  opacity: 0.85;
+}
+
+.advantage {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-success);
+  background: rgba(16, 185, 129, 0.15);
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+}

@@ -1,0 +1,240 @@
+.gameContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 10px 12px 36px;
+  animation: fadeIn 0.2s ease;
+  transition: all var(--transition-normal);
+}
+
+/* Immersive Fullscreen Mode */
+.fullscreenMode {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99999 !important;
+  background: var(--bg-primary) !important;
+  max-width: 100vw !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  padding: calc(6px + var(--sat)) 4px calc(8px + var(--sab)) !important;
+  margin: 0 !important;
+  justify-content: space-between !important;
+  overflow: hidden !important;
+}
+
+.fsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 580px;
+  gap: 8px;
+  padding: 0 4px;
+}
+
+.exitFsBtn {
+  flex-shrink: 0;
+}
+
+.hudCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 8px 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.playerInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatarWhite, .avatarBlack {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.avatarWhite {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.avatarBlack {
+  background: #231e19;
+  color: #d4af37;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.playerName {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.turnBadge {
+  font-size: 0.7rem;
+  color: #ffffff;
+  background: var(--accent-primary);
+  padding: 1px 7px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Desktop timer wrap - Hides on phones so ONLY ONE CLOCK exists! */
+.desktopTimerWrap {
+  display: block;
+}
+
+.boardArea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+}
+
+.controlsBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.historyWrap {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.replayWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* Time Control Modal Styling */
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modalDesc {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
+.timeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.timeCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  text-align: left;
+}
+
+.timeCard:hover {
+  border-color: var(--accent-primary);
+  background: var(--bg-surface);
+}
+
+.timeActive {
+  background: rgba(83, 141, 78, 0.15);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.timeIcon {
+  color: var(--text-muted);
+}
+
+.timeActive .timeIcon {
+  color: var(--accent-primary);
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent-primary);
+  cursor: pointer;
+}
+
+.modalActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* Mobile full-width optimization */
+@media (max-width: 600px) {
+  .gameContainer {
+    padding: 4px 2px 32px;
+    gap: 6px;
+  }
+  .hudCard {
+    padding: 5px 8px;
+  }
+  .desktopTimerWrap {
+    display: none !important;
+  }
+  .playerName {
+    font-size: 0.85rem;
+  }
+  .avatarWhite, .avatarBlack {
+    width: 30px;
+    height: 30px;
+    font-size: 1.25rem;
+  }
+  .controlsBar {
+    gap: 4px;
+  }
+}
