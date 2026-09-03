@@ -3,7 +3,7 @@ import { LESSONS, LESSON_CATEGORIES } from '../../lessons/lessonData';
 import { LessonViewer } from './LessonViewer';
 import { getCompletedLessons } from '../../utilities/storage';
 import { useSound } from '../../context/SoundContext';
-import { BookOpen, CheckCircle, Award, Play, ChevronRight, Sparkles, Trophy } from 'lucide-react';
+import { BookOpen, CheckCircle, Award, Play, ChevronRight, Sparkles, Trophy, ListOrdered, ArrowUp } from 'lucide-react';
 import styles from './Learn.module.css';
 
 export function LearnHub() {
@@ -31,6 +31,16 @@ export function LearnHub() {
 
   const handleCompletedUpdate = (id) => {
     setCompleted((prev) => (prev.includes(id) ? prev : [...prev, id]));
+  };
+
+  const scrollToIndex = () => {
+    playSound('click');
+    const el = document.getElementById('academy-index');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   if (selectedLesson) {
@@ -128,6 +138,12 @@ export function LearnHub() {
         </div>
       </div>
 
+      {/* Academy Course Index Header */}
+      <div className={styles.indexHeader} id="academy-index">
+        <ListOrdered size={16} />
+        <span>Academy Course Index</span>
+      </div>
+
       {/* Category Filter Pills */}
       <div className={styles.filterBar}>
         <button
@@ -197,6 +213,18 @@ export function LearnHub() {
                     </div>
                   );
                 })}
+              </div>
+
+              {/* Compact Back to Index Button at Bottom of Each Section */}
+              <div className={styles.sectionBottomBar}>
+                <button
+                  className={styles.backToIndexBtn}
+                  onClick={scrollToIndex}
+                  title="Return to Course Index"
+                >
+                  <ArrowUp size={12} />
+                  <span>Index</span>
+                </button>
               </div>
             </div>
           );
