@@ -961,3 +961,134 @@
   max-width: 360px;
   margin-top: 8px;
 }
+
+/* ============================================================ */
+/* MOBILE RESPONSIVENESS (Screens <= 768px)                     */
+/* ============================================================ */
+
+@media (max-width: 768px) {
+  .hubContainer {
+    padding: 14px 10px 48px;
+    gap: 20px;
+  }
+
+  .hubTitle {
+    font-size: 1.65rem;
+  }
+
+  .hubSubtitle {
+    font-size: 0.92rem;
+    margin-bottom: 12px;
+  }
+
+  .progressCard {
+    padding: 14px 16px;
+  }
+
+  .progressTop {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .fractionWrap {
+    align-self: flex-end;
+  }
+
+  .resumeCard {
+    padding: 12px 14px;
+    gap: 12px;
+  }
+
+  .resumeLessonTitle {
+    font-size: 0.95rem;
+  }
+
+  .lessonGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .viewerContainer {
+    padding: 12px 8px 48px;
+    gap: 16px;
+  }
+
+  .lessonTitle {
+    font-size: 1.45rem;
+  }
+
+  .lessonSubtitle {
+    font-size: 0.9rem;
+  }
+
+  .stepProgressContainer {
+    padding: 8px 10px;
+    gap: 4px;
+    justify-content: flex-start;
+  }
+
+  .stepPill {
+    padding: 4px 10px;
+    font-size: 0.78rem;
+    gap: 6px;
+  }
+
+  .stepConnector {
+    width: 14px;
+  }
+
+  .stepLayout {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .theoryBox {
+    padding: 16px 14px;
+  }
+
+  .markdownBody {
+    font-size: 0.95rem;
+  }
+
+  .demoSide {
+    padding: 14px 8px;
+    width: 100%;
+  }
+
+  .instructionBanner {
+    padding: 10px 12px;
+  }
+
+  .instructionText p {
+    font-size: 0.88rem;
+  }
+
+  .practiceWrapper {
+    width: 100%;
+    padding: 0;
+  }
+
+  .quizCard {
+    padding: 16px 14px;
+    gap: 14px;
+  }
+
+  .optionBtn {
+    padding: 12px 14px;
+  }
+
+  .optionContent {
+    font-size: 0.88rem;
+  }
+
+  .stepFooterRow {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .stepFooterRow button {
+    width: 100%;
+  }
+}

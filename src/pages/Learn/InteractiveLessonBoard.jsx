@@ -21,14 +21,14 @@ export function InteractiveLessonBoard({ practice, onComplete }) {
   const containerRef = useRef(null);
   const { playSound } = useSound();
 
-  // Responsive board width calculation
+  // Fluid responsive board width calculation for mobile & desktop
   useEffect(() => {
     const updateSize = () => {
-      if (containerRef.current) {
-        const containerWidth = containerRef.current.offsetWidth;
-        const target = Math.min(460, Math.max(280, containerWidth - 32));
-        setBoardWidth(target);
-      }
+      const screenW = window.innerWidth;
+      const screenH = window.innerHeight;
+      const availableW = screenW <= 600 ? screenW - 28 : Math.min(460, screenW - 48);
+      const maxHeight = Math.floor(screenH * 0.52);
+      setBoardWidth(Math.max(260, Math.min(availableW, maxHeight)));
     };
     updateSize();
     window.addEventListener('resize', updateSize);

@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 export function useChessTimer({ initialSeconds = 600, onTimeOut, enabled = true }) {
   const [whiteTime, setWhiteTime] = useState(initialSeconds);
@@ -7,12 +7,16 @@ export function useChessTimer({ initialSeconds = 600, onTimeOut, enabled = true 
   const [activePlayer, setActivePlayer] = useState('w');
 
   const intervalRef = useRef(null);
+  const initialSecondsRef = useRef(initialSeconds);
 
-  // Synchronize when initialSeconds changes
+  // Synchronize when initialSeconds changes (only if value actually changed)
   useEffect(() => {
-    setWhiteTime(initialSeconds);
-    setBlackTime(initialSeconds);
-    setIsRunning(false);
+    if (initialSecondsRef.current !== initialSeconds) {
+      initialSecondsRef.current = initialSeconds;
+      setWhiteTime(initialSeconds);
+      setBlackTime(initialSeconds);
+      setIsRunning(false);
+    }
   }, [initialSeconds]);
 
   const start = useCallback((player = 'w') => {
@@ -39,7 +43,10 @@ export function useChessTimer({ initialSeconds = 600, onTimeOut, enabled = true 
 
   const switchTurn = useCallback((nextPlayer) => {
     setActivePlayer(nextPlayer);
-  }, []);
+    if (initialSeconds) {
+      setIsRunning(true); // Ensure clock keeps running on turn switch!
+    }
+  }, [initialSeconds]);
 
   useEffect(() => {
     if (!enabled || !isRunning || !initialSeconds) {

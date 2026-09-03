@@ -67,9 +67,10 @@ export function PlayPvP({ onHome }) {
   } = useChessGame({
     onMoveMade: (move) => {
       handleMoveMade(move);
-      switchTurn(turn === 'w' ? 'b' : 'w');
+      const nextPlayer = move.color === 'w' ? 'b' : 'w';
+      switchTurn(nextPlayer);
       if (autoFlipBoard) {
-        setBoardOrientation(turn === 'w' ? 'black' : 'white');
+        setBoardOrientation(nextPlayer === 'b' ? 'black' : 'white');
       }
     },
     onGameOver: (res) => {
@@ -243,7 +244,7 @@ export function PlayPvP({ onHome }) {
 
       {/* Top Player HUD (Hidden in Fullscreen for maximum board space, visible in normal) */}
       {!isFullScreen && (
-        <div className={styles.hudCard}>
+        <div className={`${styles.hudCard} ${turn === 'b' && !gameOver ? styles.activeHudCard : styles.inactiveHudCard}`}>
           <div className={styles.playerInfo}>
             <div className={styles.avatarBlack}>♚</div>
             <div>
@@ -283,7 +284,7 @@ export function PlayPvP({ onHome }) {
 
       {/* Bottom Player HUD (Hidden in Fullscreen for maximum board space, visible in normal) */}
       {!isFullScreen && (
-        <div className={styles.hudCard}>
+        <div className={`${styles.hudCard} ${turn === 'w' && !gameOver ? styles.activeHudCard : styles.inactiveHudCard}`}>
           <div className={styles.playerInfo}>
             <div className={styles.avatarWhite}>♔</div>
             <div>
@@ -319,6 +320,15 @@ export function PlayPvP({ onHome }) {
 
           <Button variant="glass" size="sm" icon={RefreshCw} onClick={handleFlipOrientation} title="Flip Board Perspective">
             Flip
+          </Button>
+
+          <Button
+            variant={autoFlipBoard ? "primary" : "glass"}
+            size="sm"
+            onClick={() => setAutoFlipBoard(!autoFlipBoard)}
+            title="Auto-flip board to face the player whose turn it is"
+          >
+            Auto-Flip: {autoFlipBoard ? 'ON' : 'OFF'}
           </Button>
 
           {!isUnlimited && (

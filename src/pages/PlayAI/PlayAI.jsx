@@ -4,22 +4,26 @@ import { PromotionModal } from '../../components/board/PromotionModal';
 import { GameOverModal } from '../../components/game/GameOverModal';
 import { CapturedPieces } from '../../components/game/CapturedPieces';
 import { MoveHistory } from '../../components/game/MoveHistory';
+import { TimerDisplay } from '../../components/game/TimerDisplay';
+import { SingleTurnClock } from '../../components/game/SingleTurnClock';
 import { ReplayControls } from '../../components/replay/ReplayControls';
 import { Button } from '../../components/common/Button';
 import { DifficultySelect } from './DifficultySelect';
 import { useChessGame } from '../../hooks/useChessGame';
 import { useStockfish } from '../../hooks/useStockfish';
+import { useChessTimer } from '../../hooks/useChessTimer';
 import { useSound } from '../../context/SoundContext';
 import { useSettings } from '../../context/SettingsContext';
 import { DIFFICULTY_LEVELS } from '../../chess-engine/chessConstants';
 import { saveActiveGame, clearActiveGame } from '../../utilities/storage';
-import { RotateCcw, Lightbulb, Flag, Bot, User, Maximize2, Minimize2 } from 'lucide-react';
+import { RotateCcw, Lightbulb, Flag, Bot, User, Maximize2, Minimize2, RefreshCw } from 'lucide-react';
 import styles from './PlayAI.module.css';
 
 export function PlayAI({ onHome }) {
   const [inGame, setInGame] = useState(false);
   const [difficulty, setDifficulty] = useState('medium');
   const [playerSide, setPlayerSide] = useState('w'); // 'w' | 'b'
+  const [boardOrientation, setBoardOrientation] = useState('white');
   const [boardWidth, setBoardWidth] = useState(480);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [isReplaying, setIsReplaying] = useState(false);
@@ -68,11 +72,37 @@ export function PlayAI({ onHome }) {
     cancelPromotion,
     undo,
     resetGame,
-    resign
+    resign,
+    timeOut
   } = useChessGame({
-    onMoveMade: handleMoveMade,
-    onGameOver: handleGameOver,
+    onMoveMade: (move) => {
+      handleMoveMade(move);
+      const nextPlayer = move.color === 'w' ? 'b' : 'w';
+      timerSwitchTurn(nextPlayer);
+    },
+    onGameOver: (res) => {
+      handleGameOver(res);
+      timerPause();
+    },
     autoQueen: settings.autoQueenPromotion
+  });
+
+  const {
+    whiteTime,
+    blackTime,
+    isRunning: timerIsRunning,
+    start: timerStart,
+    pause: timerPause,
+    resume: timerResume,
+    reset: timerReset,
+    switchTurn: timerSwitchTurn,
+    isUnlimited
+  } = useChessTimer({
+    initialSeconds: 600, // 10 minutes match clock
+    onTimeOut: (loserColor) => {
+      timeOut(loserColor);
+      timerPause();
+    }
   });
 
   const {
@@ -112,7 +142,7 @@ export function PlayAI({ onHome }) {
     };
   }, []);
 
-  // Responsive Board Sizing (Fills entire screen in fullscreen!)
+  // Responsive board sizing: in fullscreen, fills the viewport
   useEffect(() => {
     const updateSize = () => {
       if (isFullScreen) {
@@ -125,85 +155,95 @@ export function PlayAI({ onHome }) {
         const isMobile = window.innerWidth <= 600;
         let calculated;
         if (isMobile) {
-          calculated = Math.min(width - 4, window.innerHeight * 0.62);
+          calculated = Math.min(width - 8, window.innerHeight * 0.52);
         } else {
-          calculated = Math.min(width - 16, window.innerHeight * 0.60, 520);
+          calculated = Math.min(width - 32, 540);
         }
         setBoardWidth(Math.max(280, Math.floor(calculated)));
       }
     };
+
     updateSize();
     window.addEventListener('resize', updateSize);
     return () => window.removeEventListener('resize', updateSize);
-  }, [inGame, isFullScreen]);
+  }, [isFullScreen]);
 
   // Handle AI turn
   useEffect(() => {
-    if (!inGame || gameOver || isReplaying) return;
+    if (!inGame || isReplaying) return;
 
-    const isAITurn = turn !== playerSide;
-    if (isAITurn && !isThinking) {
+    if (turn !== playerSide && !gameOver && !isThinking) {
       requestAIMove(fen, difficulty).then((aiMove) => {
         if (aiMove) {
-          onPieceDrop(aiMove.from, aiMove.to);
+          onPieceDrop(aiMove.from, aiMove.to, aiMove.promotion);
         }
       });
     }
-  }, [inGame, turn, playerSide, fen, difficulty, gameOver, isThinking, isReplaying, requestAIMove, onPieceDrop]);
+  }, [turn, inGame, isReplaying, playerSide, gameOver, fen, difficulty, isThinking, requestAIMove, onPieceDrop]);
 
-  // Save active game to LocalStorage
+  // Persist game state
   useEffect(() => {
     if (inGame && !gameOver) {
       saveActiveGame({
-        mode: 'ai',
         fen,
+        history,
+        mode: 'ai',
         difficulty,
         playerSide,
-        history
+        captured,
+        gameOver: false
       });
     }
-  }, [inGame, gameOver, fen, difficulty, playerSide, history]);
+  }, [fen, history, inGame, gameOver, difficulty, playerSide, captured]);
 
-  // Start game with selected difficulty
-  const handleStartGame = (diff, side) => {
-    setDifficulty(diff);
-    setPlayerSide(side);
+  // Start new game
+  const handleStartGame = (chosenDiff, chosenSide) => {
+    setDifficulty(chosenDiff);
+    setPlayerSide(chosenSide);
+    setBoardOrientation(chosenSide === 'w' ? 'white' : 'black');
+    setInGame(true);
+    resetGame();
+    clearHint();
+    setIsReplaying(false);
+    timerReset(600);
+    timerStart('w');
+  };
+
+  const handleFlipOrientation = () => {
+    setBoardOrientation((prev) => (prev === 'white' ? 'black' : 'white'));
+  };
+
+  // Replay
+  const handleEnterReplay = () => {
+    setIsReplaying(true);
+    setReplayIndex(history.length - 1);
+  };
+
+  const handleRematch = () => {
+    stopCalculation();
+    clearHint();
     resetGame();
     setIsReplaying(false);
-    clearHint();
-    setInGame(true);
+    setBoardOrientation(playerSide === 'w' ? 'white' : 'black');
+    timerReset(600);
+    timerStart('w');
   };
 
   const handleHintClick = () => {
-    if (turn === playerSide && !hint) {
-      requestHint(fen);
-    } else {
+    if (hint) {
       clearHint();
+    } else {
+      requestHint(fen, difficulty);
     }
   };
 
   const handleUndoClick = () => {
     if (isThinking) return;
     clearHint();
-    undo(turn === playerSide ? 2 : 1);
+    const stepsBack = turn === playerSide ? 2 : 1;
+    undo(stepsBack);
   };
 
-  const handleResign = () => {
-    resign(playerSide);
-  };
-
-  const handleRematch = () => {
-    resetGame();
-    setIsReplaying(false);
-    clearHint();
-  };
-
-  const handleEnterReplay = () => {
-    setIsReplaying(true);
-    setReplayIndex(history.length - 1);
-  };
-
-  // Replay board state
   const replayFen = React.useMemo(() => {
     if (!isReplaying || replayIndex === -1 || history.length === 0) {
       return isReplaying && replayIndex === -1 ? 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1' : fen;
@@ -224,14 +264,21 @@ export function PlayAI({ onHome }) {
     return <DifficultySelect onStartGame={handleStartGame} onBack={onHome} />;
   }
 
+  const isAiTurn = turn !== playerSide;
+
   return (
     <div className={`${styles.gameContainer} ${isFullScreen ? styles.fullscreenMode : ''}`} ref={containerRef}>
       {/* Top Header in Fullscreen */}
-      {isFullScreen && (
+      {isFullScreen ? (
         <div className={styles.fsHeader}>
-          <div className={styles.playerInfo}>
-            <span style={{ fontSize: '1.4rem' }}>{turn === playerSide ? '♔ Your Turn' : '♚ AI Thinking...'}</span>
-          </div>
+          <SingleTurnClock
+            turn={turn}
+            whiteTime={whiteTime}
+            blackTime={blackTime}
+            isUnlimited={isUnlimited}
+            isPaused={!timerIsRunning && !isUnlimited && !gameOver}
+            gameOver={gameOver}
+          />
           <Button
             variant="glass"
             size="sm"
@@ -242,11 +289,11 @@ export function PlayAI({ onHome }) {
             Exit
           </Button>
         </div>
-      )}
+      ) : null}
 
-      {/* Top HUD: Opponent (AI) - Hidden in Fullscreen for maximum board */}
+      {/* Top HUD: Opponent (AI) */}
       {!isFullScreen && (
-        <div className={styles.hudCard}>
+        <div className={`${styles.hudCard} ${isAiTurn && !gameOver ? styles.activeHudCard : styles.inactiveHudCard}`}>
           <div className={styles.playerInfo}>
             <div className={styles.avatarWrap} style={{ background: currentDiffConfig.color }}>
               <Bot size={22} color="#ffffff" />
@@ -254,13 +301,24 @@ export function PlayAI({ onHome }) {
             <div>
               <div className={styles.playerName}>
                 Lunar AI ({currentDiffConfig.name})
-                {isThinking && <span className={styles.thinkingBadge}>Thinking...</span>}
+                {isAiTurn && !gameOver && (
+                  <span className={styles.thinkingBadge}>{isThinking ? 'Thinking...' : 'Turn'}</span>
+                )}
               </div>
               <CapturedPieces
                 pieces={playerSide === 'w' ? captured.whiteCaptured : captured.blackCaptured}
                 advantage={playerSide === 'w' ? -captured.advantage : captured.advantage}
               />
             </div>
+          </div>
+
+          <div className={styles.desktopTimerWrap}>
+            <TimerDisplay
+              seconds={playerSide === 'w' ? blackTime : whiteTime}
+              isCurrentTurn={isAiTurn && !gameOver}
+              isUnlimited={isUnlimited}
+              label="AI Engine"
+            />
           </div>
         </div>
       )}
@@ -269,7 +327,7 @@ export function PlayAI({ onHome }) {
       <div className={styles.boardArea}>
         <ChessboardView
           fen={isReplaying ? replayFen : fen}
-          orientation={playerSide === 'w' ? 'white' : 'black'}
+          orientation={boardOrientation}
           onPieceDrop={isReplaying ? () => false : onPieceDrop}
           onSquareClick={isReplaying ? () => {} : onSquareClick}
           selectedSquare={isReplaying ? null : selectedSquare}
@@ -279,24 +337,36 @@ export function PlayAI({ onHome }) {
           kingSquare={isReplaying ? null : kingInCheckSquare}
           hint={isReplaying ? null : hint}
           boardWidth={boardWidth}
-          arePiecesDraggable={!isReplaying && turn === playerSide && !isThinking}
+          arePiecesDraggable={!isReplaying && turn === playerSide && !isThinking && !gameOver}
         />
       </div>
 
-      {/* Bottom HUD: Player - Hidden in Fullscreen for maximum board */}
+      {/* Bottom HUD: Player */}
       {!isFullScreen && (
-        <div className={styles.hudCard}>
+        <div className={`${styles.hudCard} ${!isAiTurn && !gameOver ? styles.activeHudCard : styles.inactiveHudCard}`}>
           <div className={styles.playerInfo}>
             <div className={styles.avatarWrap} style={{ background: 'var(--accent-primary)' }}>
               <User size={22} color="#ffffff" />
             </div>
             <div>
-              <div className={styles.playerName}>You ({playerSide === 'w' ? 'White' : 'Black'})</div>
+              <div className={styles.playerName}>
+                You ({playerSide === 'w' ? 'White' : 'Black'})
+                {!isAiTurn && !gameOver && <span className={styles.turnBadge}>Your Turn</span>}
+              </div>
               <CapturedPieces
                 pieces={playerSide === 'w' ? captured.blackCaptured : captured.whiteCaptured}
                 advantage={playerSide === 'w' ? captured.advantage : -captured.advantage}
               />
             </div>
+          </div>
+
+          <div className={styles.desktopTimerWrap}>
+            <TimerDisplay
+              seconds={playerSide === 'w' ? whiteTime : blackTime}
+              isCurrentTurn={!isAiTurn && !gameOver}
+              isUnlimited={isUnlimited}
+              label="You"
+            />
           </div>
         </div>
       )}
@@ -311,7 +381,17 @@ export function PlayAI({ onHome }) {
             onClick={toggleFullscreen}
             title={isFullScreen ? 'Exit Fullscreen' : 'Full Screen Board'}
           >
-            {isFullScreen ? 'Exit Fullscreen' : 'Full Screen Board'}
+            {isFullScreen ? 'Exit' : 'Full Screen'}
+          </Button>
+
+          <Button
+            variant="glass"
+            size="sm"
+            icon={RefreshCw}
+            onClick={handleFlipOrientation}
+            title="Flip Board Perspective"
+          >
+            Flip
           </Button>
 
           {settings.moveSuggestions && (
@@ -338,19 +418,13 @@ export function PlayAI({ onHome }) {
             Undo
           </Button>
 
-          <Button
-            variant="danger"
-            size="sm"
-            icon={Flag}
-            onClick={handleResign}
-            title="Resign Game"
-          >
+          <Button variant="danger" size="sm" icon={Flag} onClick={() => resign(playerSide)}>
             Resign
           </Button>
         </div>
       )}
 
-      {/* Replay Controls / Move History (Hidden during active Fullscreen) */}
+      {/* Replay Controls / Move History */}
       {!isFullScreen && (
         isReplaying ? (
           <div className={styles.replayWrap}>
@@ -382,10 +456,10 @@ export function PlayAI({ onHome }) {
 
       {/* Game Over Modal */}
       <GameOverModal
-        isOpen={gameOver && !isReplaying}
+        isOpen={gameOver}
         result={gameOverResult}
-        playerColor={playerSide}
-        isVsAI={true}
+        playerSide={playerSide}
+        history={history}
         onRematch={handleRematch}
         onReplay={handleEnterReplay}
         onHome={onHome}

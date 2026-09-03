@@ -24,10 +24,11 @@ export function LessonViewer({ lesson, onBack, onNextLesson, hasNextLesson, next
   // Responsive board calculation for Demo
   useEffect(() => {
     const updateSize = () => {
-      if (demoWrapRef.current) {
-        const width = demoWrapRef.current.offsetWidth;
-        setBoardWidth(Math.min(420, Math.max(280, width - 24)));
-      }
+      const screenW = window.innerWidth;
+      const screenH = window.innerHeight;
+      const availableW = screenW <= 600 ? screenW - 28 : Math.min(420, screenW - 48);
+      const maxHeight = Math.floor(screenH * 0.48);
+      setBoardWidth(Math.max(260, Math.min(availableW, maxHeight)));
     };
     updateSize();
     window.addEventListener('resize', updateSize);
