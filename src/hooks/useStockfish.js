@@ -14,8 +14,16 @@ export function useStockfish() {
     cancelRef.current = false;
 
     return new Promise((resolve) => {
-      // Near-instant 20ms UI tick
-      const thinkDelay = 20;
+      // Natural, visible pause (450ms - 600ms) so players can clearly see the turn change and move animation
+      const delayMap = {
+        beginner: 400,
+        easy: 450,
+        medium: 500,
+        hard: 550,
+        expert: 600,
+        master: 650
+      };
+      const thinkDelay = delayMap[difficulty] || 500;
 
       setTimeout(() => {
         if (cancelRef.current) {
