@@ -1,10 +1,10 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Chess } from 'chess.js';
 import confetti from 'canvas-confetti';
 import { ChessboardView } from '../../components/board/ChessboardView';
 import { Button } from '../../components/common/Button';
 import { useSound } from '../../context/SoundContext';
-import { CheckCircle, Lightbulb, RotateCcw, Sparkles } from 'lucide-react';
+import { CheckCircle, Lightbulb, RotateCcw, Target, Sparkles } from 'lucide-react';
 import styles from './Learn.module.css';
 
 export function InteractiveLessonBoard({ practice, onComplete }) {
@@ -16,8 +16,24 @@ export function InteractiveLessonBoard({ practice, onComplete }) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [boardWidth, setBoardWidth] = useState(360);
 
+  const containerRef = useRef(null);
   const { playSound } = useSound();
+
+  // Responsive board width calculation
+  useEffect(() => {
+    const updateSize = () => {
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.offsetWidth;
+        const target = Math.min(460, Math.max(280, containerWidth - 32));
+        setBoardWidth(target);
+      }
+    };
+    updateSize();
+    window.addEventListener('resize', updateSize);
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
 
   // Reset when practice changes
   useEffect(() => {
@@ -63,7 +79,6 @@ export function InteractiveLessonBoard({ practice, onComplete }) {
         // Legal move, but not the intended solution for this lesson drill
         playSound('move');
         setErrorMessage('Good move, but not the targeted move for this exercise. Try again or check the hint!');
-        // Automatically reset board after 1.5s
         setTimeout(() => {
           const resetInstance = new Chess(practice.fen);
           setChess(resetInstance);
@@ -98,8 +113,9 @@ export function InteractiveLessonBoard({ practice, onComplete }) {
     const piece = chess.get(square);
     if (piece && piece.color === chess.turn()) {
       setSelectedSquare(square);
-      const legal = chess.moves({ square, verbose: true });
-      setPossibleMoves(legal);
+      const moves = chess.moves({ square, verbose: true });
+      setPossibleMoves(moves);
+      playSound('click');
     } else {
       setSelectedSquare(null);
       setPossibleMoves([]);
@@ -115,13 +131,19 @@ export function InteractiveLessonBoard({ practice, onComplete }) {
     setLastMove(null);
     setIsSuccess(false);
     setErrorMessage(null);
+    playSound('click');
   };
 
   return (
-    <div className={styles.practiceContainer}>
+    <div className={styles.practiceWrapper} ref={containerRef}>
       <div className={styles.instructionBanner}>
-        <Sparkles size={18} className={styles.sparkleIcon} />
-        <span>{practice.instruction}</span>
+        <div className={styles.instructionIcon}>
+          <Target size={20} />
+        </div>
+        <div className={styles.instructionText}>
+          <span className={styles.instructionLabel}>Your Mission:</span>
+          <p>{practice.instruction}</p>
+        </div>
       </div>
 
       <div className={styles.boardBox}>
@@ -134,7 +156,7 @@ export function InteractiveLessonBoard({ practice, onComplete }) {
           possibleMoves={possibleMoves}
           lastMove={lastMove}
           hint={showHint ? practice.expectedMove : null}
-          boardWidth={360}
+          boardWidth={boardWidth}
           arePiecesDraggable={!isSuccess}
         />
       </div>
@@ -142,8 +164,8 @@ export function InteractiveLessonBoard({ practice, onComplete }) {
       {/* Status Feedback */}
       {isSuccess && (
         <div className={styles.successBox}>
-          <CheckCircle size={22} color="#10b981" />
-          <span>Brilliant! You completed this exercise!</span>
+          <CheckCircle size={22} color="#538d4e" />
+          <span>Brilliant! You mastered this drill!</span>
         </div>
       )}
 
@@ -176,7 +198,7 @@ export function InteractiveLessonBoard({ practice, onComplete }) {
 
       {showHint && practice.hint && (
         <div className={styles.hintBox}>
-          <strong>Hint: </strong>{practice.hint}
+          <strong>💡 Hint: </strong>{practice.hint}
         </div>
       )}
     </div>

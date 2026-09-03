@@ -1,11 +1,18 @@
-﻿.hubContainer {
-  max-width: 960px;
+/* Modern Tournament Chess Academy Styling */
+
+.hubContainer {
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 24px 16px 48px;
+  padding: 24px 16px 64px;
   display: flex;
   flex-direction: column;
   gap: 32px;
   animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .hubHeader {
@@ -13,201 +20,384 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  gap: 12px;
 }
 
-.hubIcon {
-  width: 64px;
-  height: 64px;
-  border-radius: var(--radius-xl);
-  background: linear-gradient(135deg, #059669, #34d399);
-  color: #ffffff;
-  display: flex;
+.badge {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 12px;
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+  gap: 6px;
+  background: rgba(83, 141, 78, 0.15);
+  border: 1px solid rgba(83, 141, 78, 0.4);
+  color: #538d4e;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .hubTitle {
-  font-size: 2.2rem;
+  font-size: 2.3rem;
   font-weight: 800;
-  margin-bottom: 6px;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.5px;
 }
 
 .hubSubtitle {
   color: var(--text-secondary);
-  font-size: 1rem;
-  max-width: 500px;
-  margin-bottom: 24px;
+  font-size: 1.05rem;
+  max-width: 600px;
+  margin: 0 0 16px;
+  line-height: 1.5;
 }
 
-/* Progress card */
+/* Progress & Rank Card */
 .progressCard {
   width: 100%;
-  max-width: 620px;
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  padding: 16px 20px;
+  max-width: 720px;
+  background: var(--surface-secondary, #262421);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+  border-radius: 16px;
+  padding: 18px 24px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
 
 .progressTop {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-.progressLabel {
+.rankBadge {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-weight: 700;
-  font-size: 0.95rem;
+  gap: 12px;
+}
+
+.rankEmoji {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.rankInfo {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.rankLabel {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.rankTitle {
+  font-size: 1.1rem;
+  font-weight: 800;
   color: var(--text-primary);
 }
 
-.awardIcon {
-  color: #f59e0b;
+.fractionWrap {
+  display: flex;
+  align-items: center;
 }
 
 .progressFraction {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--accent-primary);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #538d4e;
 }
 
 .progressBar {
   width: 100%;
-  height: 8px;
-  background: var(--bg-tertiary);
-  border-radius: var(--radius-full);
+  height: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 9999px;
   overflow: hidden;
 }
 
 .progressFill {
   height: 100%;
-  background: var(--accent-gradient);
-  border-radius: var(--radius-full);
-  transition: width 0.4s ease;
+  background: linear-gradient(90deg, #538d4e, #81b64c);
+  border-radius: 9999px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Categories & Lesson Cards */
+/* Quick Resume Banner */
+.resumeCard {
+  width: 100%;
+  max-width: 720px;
+  background: linear-gradient(135deg, rgba(83, 141, 78, 0.12), rgba(38, 36, 33, 0.9));
+  border: 1px solid rgba(83, 141, 78, 0.35);
+  border-radius: 14px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  text-align: left;
+}
+
+.resumeCard:hover {
+  transform: translateY(-2px);
+  border-color: #538d4e;
+  box-shadow: 0 6px 20px rgba(83, 141, 78, 0.2);
+}
+
+.resumeIconWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #538d4e;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.resumeText {
+  flex: 1;
+  min-width: 0;
+}
+
+.resumeLabel {
+  font-size: 0.75rem;
+  color: #81b64c;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.resumeLessonTitle {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.resumeSubtitle {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.resumeActionBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #538d4e;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* Filter Pills */
+.filterBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.filterBar::-webkit-scrollbar {
+  display: none;
+}
+
+.filterPill {
+  background: var(--surface-secondary, #262421);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterPill:hover {
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.filterPillActive {
+  background: #538d4e;
+  color: #ffffff !important;
+  border-color: #538d4e !important;
+}
+
+/* Category Sections & Lesson Cards */
 .categoryList {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 36px;
 }
 
 .categorySection {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .catHeader {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 8px;
 }
 
 .catName {
   font-size: 1.3rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text-primary);
+  margin: 0 0 2px;
 }
 
 .catDesc {
   font-size: 0.85rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
+}
+
+.catScore {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #538d4e;
+  background: rgba(83, 141, 78, 0.12);
+  padding: 4px 10px;
+  border-radius: 6px;
 }
 
 .lessonGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 14px;
+  gap: 16px;
 }
 
 .lessonCard {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 16px 18px;
+  background: var(--surface-secondary, #262421);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 8px;
+  gap: 10px;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .lessonCard:hover {
-  border-color: var(--accent-primary);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
+  transform: translateY(-3px);
+  border-color: #538d4e;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
 }
 
 .lessonDone {
-  border-color: rgba(16, 185, 129, 0.35);
-  background: rgba(16, 185, 129, 0.04);
+  border-color: rgba(83, 141, 78, 0.4);
+  background: rgba(83, 141, 78, 0.06);
 }
 
 .lessonCardHeader {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  gap: 8px;
 }
 
 .lessonCardTitle {
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text-primary);
+  margin: 0;
 }
 
-.doneIcon {
-  color: var(--color-success);
-  flex-shrink: 0;
+.doneBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #538d4e;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: rgba(83, 141, 78, 0.15);
+  padding: 3px 8px;
+  border-radius: 6px;
 }
 
-.lessonCardSub {
-  font-size: 0.82rem;
+.startBadge {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.lessonCardDesc {
+  margin: 0;
+  font-size: 0.88rem;
   color: var(--text-secondary);
   line-height: 1.4;
   flex: 1;
 }
 
-.lessonCardFooter {
+.cardFooterRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--accent-primary);
-  border-top: 1px solid var(--border-subtle);
+  color: var(--text-muted, #7c7771);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding-top: 8px;
-  margin-top: 4px;
 }
 
-.arrow {
-  transition: transform var(--transition-fast);
+.durationTag {
+  font-weight: 600;
 }
 
-.lessonCard:hover .arrow {
-  transform: translateX(4px);
+.categoryTag {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 
-/* Lesson Viewer Styling */
+/* ============================================================ */
+/* LESSON VIEWER (Interactive Guided Studio)                     */
+/* ============================================================ */
+
 .viewerContainer {
-  max-width: 760px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 16px 16px 48px;
+  padding: 20px 16px 64px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
   animation: fadeIn 0.25s ease;
 }
 
@@ -218,118 +408,202 @@
 }
 
 .backBtn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  color: var(--text-secondary);
-  font-weight: 600;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 700;
   font-size: 0.9rem;
-  padding: 6px 10px;
-  border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .backBtn:hover {
-  color: var(--text-primary);
-  background: var(--bg-tertiary);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .completedTag {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.8rem;
+  color: #538d4e;
+  background: rgba(83, 141, 78, 0.15);
+  border: 1px solid rgba(83, 141, 78, 0.35);
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-size: 0.85rem;
   font-weight: 700;
-  color: var(--color-success);
-  background: rgba(16, 185, 129, 0.15);
-  padding: 4px 10px;
-  border-radius: var(--radius-full);
 }
 
 .titleSection {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  text-align: left;
 }
 
 .lessonTitle {
   font-size: 2rem;
   font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 6px;
 }
 
 .lessonSubtitle {
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 1.05rem;
+  margin: 0;
 }
 
-.tabsNav {
+/* Step Progress Indicator */
+.stepProgressContainer {
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 8px;
-  border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: 8px;
+  background: var(--surface-secondary, #262421);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 12px 18px;
   overflow-x: auto;
 }
 
-.tabBtn {
+.stepPill {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 18px;
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  font-size: 0.92rem;
+  padding: 6px 14px;
+  border-radius: 9999px;
   color: var(--text-secondary);
-  transition: all var(--transition-fast);
+  font-size: 0.88rem;
+  font-weight: 700;
   cursor: pointer;
+  transition: all 0.2s ease;
   white-space: nowrap;
 }
 
-.tabBtn:hover {
+.stepPill:hover {
   color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.05);
 }
 
-.tabActive {
-  color: var(--accent-primary);
-  background: rgba(56, 189, 248, 0.12);
-  border: 1px solid rgba(56, 189, 248, 0.25);
+.stepNum {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 800;
 }
 
-.tabContent {
-  padding-top: 10px;
+.stepPillActive {
+  background: #538d4e;
+  color: #ffffff !important;
 }
 
-.theoryPane {
+.stepPillActive .stepNum {
+  background: rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+}
+
+.stepPillDone {
+  color: #81b64c;
+}
+
+.stepPillDone .stepNum {
+  background: rgba(83, 141, 78, 0.25);
+  color: #81b64c;
+}
+
+.stepConnector {
+  width: 32px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+/* Step 1: Layout */
+.stepLayout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 820px) {
+  .stepLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.theorySide {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.markdownBody {
+.theoryBox {
+  background: var(--surface-secondary, #262421);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: left;
+}
+
+.sectionHeading {
   display: flex;
-  flex-direction: column;
-  gap: 14px;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #538d4e;
+  margin: 0 0 16px;
+}
+
+.markdownBody {
   font-size: 1.02rem;
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--text-primary);
 }
 
-.demoSection {
+.markdownBody p {
+  margin: 0 0 14px;
+}
+
+.markdownBody strong {
+  color: #ffffff;
+}
+
+.stepActionBtnWrap {
+  display: flex;
+}
+
+.demoSide {
+  background: var(--surface-secondary, #262421);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  padding: 18px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
+  gap: 14px;
+}
+
+.demoHeaderRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .demoTitle {
   font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text-secondary);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
 }
 
 .demoBoardWrap {
@@ -338,14 +612,24 @@
   width: 100%;
 }
 
-.tabFooter {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 16px;
+.demoCaption {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-align: center;
 }
 
-/* Interactive Practice Board Styling */
-.practiceContainer {
+/* Step 2: Practice Drill */
+.practiceStepContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.practiceWrapper {
+  width: 100%;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -353,22 +637,42 @@
 }
 
 .instructionBanner {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 18px;
-  background: var(--glass-bg);
-  border: 1px solid var(--border-bright);
-  border-radius: var(--radius-md);
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text-primary);
   width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(83, 141, 78, 0.12);
+  border: 1px solid rgba(83, 141, 78, 0.35);
+  border-radius: 12px;
+  padding: 14px 18px;
+  text-align: left;
 }
 
-.sparkleIcon {
-  color: var(--accent-primary);
+.instructionIcon {
+  color: #538d4e;
   flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.instructionText {
+  flex: 1;
+}
+
+.instructionLabel {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #81b64c;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.instructionText p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  line-height: 1.45;
 }
 
 .boardBox {
@@ -381,72 +685,98 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 12px 18px;
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.35);
-  border-radius: var(--radius-md);
-  color: var(--color-success);
+  background: rgba(83, 141, 78, 0.18);
+  border: 1px solid #538d4e;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 10px;
   font-weight: 700;
-  width: 100%;
+  animation: fadeIn 0.2s ease;
 }
 
 .errorBox {
-  padding: 10px 16px;
   background: rgba(239, 68, 68, 0.15);
   border: 1px solid rgba(239, 68, 68, 0.35);
-  border-radius: var(--radius-md);
-  color: var(--color-danger);
+  color: #fca5a5;
+  padding: 10px 16px;
+  border-radius: 10px;
   font-size: 0.9rem;
-  font-weight: 600;
-  width: 100%;
+  animation: fadeIn 0.2s ease;
 }
 
 .practiceActions {
   display: flex;
-  gap: 12px;
+  gap: 10px;
 }
 
 .hintBox {
-  padding: 10px 14px;
-  background: var(--bg-tertiary);
-  border-radius: var(--radius-md);
-  font-size: 0.88rem;
-  color: var(--text-secondary);
-  border-left: 3px solid var(--accent-primary);
   width: 100%;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  text-align: left;
+  animation: fadeIn 0.2s ease;
 }
 
-/* Quiz Pane Styling */
+.stepFooterRow {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 20px;
+}
+
+/* Step 3: Quiz */
+.quizStepContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
 .quizCard {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 600px;
+  background: var(--surface-secondary, #262421);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
   padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 18px;
+  text-align: left;
 }
 
 .quizHeader {
   display: flex;
   align-items: center;
   gap: 10px;
+  color: #538d4e;
 }
 
 .quizIcon {
-  color: var(--accent-primary);
+  color: #538d4e;
 }
 
 .quizTitle {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
 }
 
 .questionText {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--text-primary);
-  line-height: 1.45;
+  margin: 0;
+  line-height: 1.5;
 }
 
 .optionsList {
@@ -458,101 +788,150 @@
 .optionBtn {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  font-size: 0.95rem;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 14px 18px;
   color: var(--text-primary);
-  text-align: left;
-  transition: all var(--transition-fast);
   cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
 }
 
 .optionBtn:hover:not(:disabled) {
-  border-color: var(--accent-primary);
-  background: var(--bg-surface);
-}
-
-.selectedOption {
-  border-color: var(--accent-primary);
-  background: rgba(56, 189, 248, 0.12);
-  color: var(--accent-primary);
-}
-
-.correctOption {
-  border-color: var(--color-success);
-  background: rgba(16, 185, 129, 0.15);
-  color: var(--color-success);
-}
-
-.wrongOption {
-  border-color: var(--color-danger);
-  background: rgba(239, 68, 68, 0.15);
-  color: var(--color-danger);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .optionIndex {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 26px;
-  height: 26px;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.08);
-  font-weight: 700;
-  font-size: 0.8rem;
+  font-weight: 800;
+  font-size: 0.85rem;
   flex-shrink: 0;
 }
 
 .optionContent {
   flex: 1;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.selectedOption {
+  border-color: #538d4e !important;
+  background: rgba(83, 141, 78, 0.12) !important;
+}
+
+.correctOption {
+  border-color: #538d4e !important;
+  background: rgba(83, 141, 78, 0.2) !important;
+}
+
+.wrongOption {
+  border-color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.18) !important;
 }
 
 .checkIcon {
-  color: var(--color-success);
+  color: #538d4e;
+  flex-shrink: 0;
 }
 
 .crossIcon {
-  color: var(--color-danger);
+  color: #ef4444;
+  flex-shrink: 0;
 }
 
 .feedbackBox {
-  padding: 14px 18px;
-  border-radius: var(--radius-md);
+  border-radius: 12px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  font-size: 0.95rem;
-  line-height: 1.45;
 }
 
 .feedbackSuccess {
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.35);
-  color: var(--color-success);
+  background: rgba(83, 141, 78, 0.15);
+  border: 1px solid #538d4e;
+  color: #ffffff;
 }
 
 .feedbackError {
   background: rgba(239, 68, 68, 0.15);
   border: 1px solid rgba(239, 68, 68, 0.35);
-  color: var(--color-danger);
+  color: #fca5a5;
+}
+
+.feedbackBox p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
 }
 
 .retryBtn {
   align-self: flex-start;
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 .quizActions {
   display: flex;
   justify-content: flex-end;
-  margin-top: 8px;
 }
 
-.nextLessonWrap {
+/* Lesson Mastered Celebration Card */
+.masteryCelebrationCard {
+  width: 100%;
+  max-width: 600px;
+  background: linear-gradient(135deg, rgba(83, 141, 78, 0.25), rgba(38, 36, 33, 0.95));
+  border: 2px solid #538d4e;
+  border-radius: 18px;
+  padding: 28px 24px;
   display: flex;
-  justify-content: flex-end;
-  margin-top: 24px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  box-shadow: 0 8px 32px rgba(83, 141, 78, 0.25);
+  animation: fadeIn 0.3s ease;
+}
+
+.celebrationIconWrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #538d4e;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(83, 141, 78, 0.4);
+}
+
+.celebrationTitle {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 4px 0 0;
+}
+
+.celebrationDesc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 0;
+  max-width: 440px;
+}
+
+.celebrationActions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 360px;
+  margin-top: 8px;
 }
