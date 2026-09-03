@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Bot, Users, BookOpen, Settings, Play, Flame, Sparkles, Crown, Smartphone, Download } from 'lucide-react';
+import { Bot, Users, BookOpen, Settings, Play, Flame, Sparkles, Smartphone, Download } from 'lucide-react';
+import { DownloadModal } from '../../components/download/DownloadModal';
 import { loadActiveGame } from '../../utilities/storage';
 import { useSound } from '../../context/SoundContext';
 import { useSettings } from '../../context/SettingsContext';
@@ -9,6 +10,7 @@ export function Home({ onNavigate }) {
   const { playSound } = useSound();
   const { settings, updateSetting } = useSettings();
   const [activeSavedGame, setActiveSavedGame] = useState(null);
+  const [downloadOpen, setDownloadOpen] = useState(false);
 
   useEffect(() => {
     const saved = loadActiveGame();
@@ -94,19 +96,20 @@ export function Home({ onNavigate }) {
           </button>
         </div>
 
-        {/* Download Android APK Button */}
+        {/* Download Now Button (Opens options modal) */}
         <div className={styles.downloadHeroWrap}>
-          <a
-            href="./LunarChess.apk"
-            download="LunarChess.apk"
+          <button
             className={styles.downloadApkBtn}
-            title="Download Android APK"
+            onClick={() => {
+              playSound('click');
+              setDownloadOpen(true);
+            }}
+            title="Download Lunar Chess"
           >
             <Smartphone size={19} />
-            <span>Download Android App (APK)</span>
-            <span className={styles.apkBadge}>Free • 4.2 MB</span>
+            <span>Download Now</span>
             <Download size={16} />
-          </a>
+          </button>
         </div>
 
         {/* Resume Banner */}
@@ -201,6 +204,9 @@ export function Home({ onNavigate }) {
           </div>
         </div>
       </section>
+
+      {/* Download Options Modal (APK vs Google Play) */}
+      <DownloadModal isOpen={downloadOpen} onClose={() => setDownloadOpen(false)} />
     </div>
   );
 }

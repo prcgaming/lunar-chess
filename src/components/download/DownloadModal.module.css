@@ -1,0 +1,202 @@
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 6px 0;
+}
+
+.subtitle {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.optionCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.optionCard:hover {
+  border-color: var(--accent-primary);
+  background: var(--bg-surface);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.iconWrapApk {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: rgba(83, 141, 78, 0.18);
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.iconWrapPlay {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: rgba(2, 132, 199, 0.15);
+  color: #0284c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.optionInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.optionTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.optionTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.badgeInstant {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--accent-primary);
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+}
+
+.badgeComingSoon {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: #d97706;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+}
+
+.optionDesc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.safeTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--accent-primary);
+}
+
+.playProtectTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #0284c7;
+}
+
+.downloadActionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: var(--radius-md);
+  background: var(--accent-primary);
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--transition-fast);
+}
+
+.optionCard:hover .downloadActionBtn {
+  background: var(--accent-hover);
+}
+
+.disabledCard {
+  cursor: default !important;
+  opacity: 0.75;
+}
+
+.disabledCard:hover {
+  border-color: var(--border-subtle) !important;
+  transform: none !important;
+  box-shadow: none !important;
+  background: var(--bg-tertiary) !important;
+}
+
+.comingSoonBtn {
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: not-allowed;
+  flex-shrink: 0;
+}
+
+.footerNote {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  margin-top: 4px;
+}
+
+.noteIcon {
+  color: var(--accent-secondary);
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .optionCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .downloadActionBtn, .comingSoonBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}

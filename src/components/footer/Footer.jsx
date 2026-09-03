@@ -1,23 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Youtube, ExternalLink, Smartphone, Download } from 'lucide-react';
+import { DownloadModal } from '../download/DownloadModal';
 import styles from './Footer.module.css';
 
 export function Footer() {
+  const [downloadOpen, setDownloadOpen] = useState(false);
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.apkSection}>
-            <a
-              href="./LunarChess.apk"
-              download="LunarChess.apk"
+            <button
               className={styles.apkBtn}
-              title="Download Android APK"
+              onClick={() => setDownloadOpen(true)}
+              title="Download Lunar Chess App"
             >
               <Smartphone size={16} />
-              <span>Download Android App (APK)</span>
+              <span>Download App</span>
               <Download size={14} />
-            </a>
+            </button>
           </div>
 
           <div className={styles.brandGroup}>
@@ -40,6 +42,8 @@ export function Footer() {
           </p>
         </div>
       </div>
+
+      <DownloadModal isOpen={downloadOpen} onClose={() => setDownloadOpen(false)} />
     </footer>
   );
 }

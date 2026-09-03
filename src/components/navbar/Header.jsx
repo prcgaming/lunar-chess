@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Moon, Sun, Volume2, VolumeX, BookOpen, Bot, Users, Settings, ArrowLeft, Download } from 'lucide-react';
+import { DownloadModal } from '../download/DownloadModal';
 import { useSettings } from '../../context/SettingsContext';
 import { useSound } from '../../context/SoundContext';
 import styles from './Header.module.css';
@@ -7,6 +8,7 @@ import styles from './Header.module.css';
 export function Header({ currentView, setView, showBack = false, onBack }) {
   const { settings, updateSetting } = useSettings();
   const { playSound } = useSound();
+  const [downloadOpen, setDownloadOpen] = useState(false);
 
   const toggleSound = () => {
     playSound('click');
@@ -83,15 +85,17 @@ export function Header({ currentView, setView, showBack = false, onBack }) {
 
         {/* Quick Action Icons */}
         <div className={styles.actions}>
-          <a
-            href="./LunarChess.apk"
-            download="LunarChess.apk"
+          <button
             className={styles.downloadHeaderBtn}
-            title="Download Android APK"
+            onClick={() => {
+              playSound('click');
+              setDownloadOpen(true);
+            }}
+            title="Download App"
           >
             <Download size={16} />
-            <span className={styles.apkText}>APK</span>
-          </a>
+            <span className={styles.apkText}>App</span>
+          </button>
 
           <button
             className={styles.actionBtn}
@@ -112,6 +116,8 @@ export function Header({ currentView, setView, showBack = false, onBack }) {
           </button>
         </div>
       </div>
+
+      <DownloadModal isOpen={downloadOpen} onClose={() => setDownloadOpen(false)} />
     </header>
   );
 }
