@@ -97,45 +97,45 @@ export function LearnHub() {
         <p className={styles.hubSubtitle}>
           Master chess from ground zero to grandmaster tactics with interactive boards, real-time drills, and concept quizzes.
         </p>
+      </div>
 
-        {/* Progress & Rank Card */}
-        <div className={styles.progressCard}>
-          <div className={styles.progressTop}>
-            <div className={styles.rankBadge}>
-              <span className={styles.rankEmoji}>{rankEmoji}</span>
-              <div className={styles.rankInfo}>
-                <span className={styles.rankLabel}>Mastery Level:</span>
-                <strong className={styles.rankTitle}>{rankName}</strong>
-              </div>
-            </div>
-
-            <div className={styles.fractionWrap}>
-              <span className={styles.progressFraction}>
-                {completed.length} / {LESSONS.length} Mastered ({completionPercent}%)
-              </span>
+      {/* Progress & Rank Card */}
+      <div className={styles.progressCard}>
+        <div className={styles.progressTop}>
+          <div className={styles.rankBadge}>
+            <span className={styles.rankEmoji}>{rankEmoji}</span>
+            <div className={styles.rankInfo}>
+              <span className={styles.rankLabel}>Mastery Level:</span>
+              <strong className={styles.rankTitle}>{rankName}</strong>
             </div>
           </div>
 
-          <div className={styles.progressBar}>
-            <div className={styles.progressFill} style={{ width: `${completionPercent}%` }} />
+          <div className={styles.fractionWrap}>
+            <span className={styles.progressFraction}>
+              {completed.length} / {LESSONS.length} Mastered ({completionPercent}%)
+            </span>
           </div>
         </div>
 
-        {/* Quick Resume Card */}
-        <div className={styles.resumeCard} onClick={() => handleLessonSelect(nextLesson)}>
-          <div className={styles.resumeIconWrap}>
-            <Play size={20} fill="currentColor" />
-          </div>
-          <div className={styles.resumeText}>
-            <span className={styles.resumeLabel}>Continue Learning:</span>
-            <strong className={styles.resumeLessonTitle}>{nextLesson.title}</strong>
-            <p className={styles.resumeSubtitle}>{nextLesson.subtitle}</p>
-          </div>
-          <button className={styles.resumeActionBtn}>
-            <span>Start</span>
-            <ChevronRight size={18} />
-          </button>
+        <div className={styles.progressBar}>
+          <div className={styles.progressFill} style={{ width: `${completionPercent}%` }} />
         </div>
+      </div>
+
+      {/* Quick Resume Card */}
+      <div className={styles.resumeCard} onClick={() => handleLessonSelect(nextLesson)}>
+        <div className={styles.resumeIconWrap}>
+          <Play size={20} fill="currentColor" />
+        </div>
+        <div className={styles.resumeText}>
+          <span className={styles.resumeLabel}>Continue Learning:</span>
+          <strong className={styles.resumeLessonTitle}>{nextLesson.title}</strong>
+          <p className={styles.resumeSubtitle}>{nextLesson.subtitle}</p>
+        </div>
+        <button className={styles.resumeActionBtn}>
+          <span>Start</span>
+          <ChevronRight size={18} />
+        </button>
       </div>
 
       {/* Academy Course Index Header */}
