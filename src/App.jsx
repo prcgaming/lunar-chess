@@ -8,6 +8,7 @@ import { PlayAI } from './pages/PlayAI/PlayAI';
 import { PlayPvP } from './pages/PlayPvP/PlayPvP';
 import { LearnHub } from './pages/Learn/LearnHub';
 import { Settings } from './pages/Settings/Settings';
+import { ErrorBoundary } from './components/common/ErrorBoundary';
 import { Bot, Users, BookOpen, Settings as SettingsIcon, Home as HomeIcon } from 'lucide-react';
 import styles from './App.module.css';
 
@@ -29,11 +30,13 @@ function MainApp() {
       />
 
       <main className={styles.mainContent}>
-        {currentView === 'home' && <Home onNavigate={navigateTo} />}
-        {currentView === 'play-ai' && <PlayAI onHome={() => navigateTo('home')} />}
-        {currentView === 'play-pvp' && <PlayPvP onHome={() => navigateTo('home')} />}
-        {currentView === 'learn' && <LearnHub />}
-        {currentView === 'settings' && <Settings />}
+        <ErrorBoundary onReset={() => navigateTo('home')}>
+          {currentView === 'home' && <Home onNavigate={navigateTo} />}
+          {currentView === 'play-ai' && <PlayAI onHome={() => navigateTo('home')} />}
+          {currentView === 'play-pvp' && <PlayPvP onHome={() => navigateTo('home')} />}
+          {currentView === 'learn' && <LearnHub />}
+          {currentView === 'settings' && <Settings />}
+        </ErrorBoundary>
 
         {/* Global Bottom Footer */}
         <Footer />

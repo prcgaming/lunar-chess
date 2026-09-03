@@ -16,6 +16,8 @@ const ICON_MAP = {
 };
 
 export function TimeControlModal({ isOpen, onSelectTime, onCancel }) {
+  const [selected, setSelected] = useState('10m');
+
   const handleStart = () => {
     const found = TIME_CONTROLS.find((t) => t.id === selected) || TIME_CONTROLS[3];
     onSelectTime(found.seconds);
