@@ -38,7 +38,7 @@ export function Header({ currentView, setView, showBack = false, onBack }) {
           ) : (
             <button className={styles.brand} onClick={() => handleNav('home')}>
               <div className={styles.logoBadge}>
-                <Moon className={styles.moonIcon} size={20} />
+                <img src="./favicon.png" alt="Lunar Chess Logo" className={styles.logoImg} />
               </div>
               <div className={styles.brandText}>
                 <span className={styles.title}>LUNAR CHESS</span>

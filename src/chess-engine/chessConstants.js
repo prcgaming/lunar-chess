@@ -7,7 +7,7 @@ export const DIFFICULTY_LEVELS = {
     description: 'Casual player learning the basics. Makes frequent blunders.',
     color: '#538d4e',
     blunderRate: 0.65,
-    movetime: 200
+    movetime: 50
   },
   easy: {
     id: 'easy',
@@ -17,47 +17,47 @@ export const DIFFICULTY_LEVELS = {
     description: 'Understands basic captures and simple moves. Occasional mistakes.',
     color: '#0284c7',
     blunderRate: 0.35,
-    movetime: 400
+    movetime: 80
   },
   medium: {
     id: 'medium',
     name: 'Medium',
     elo: 1200,
-    depth: 4,
+    depth: 3,
     description: 'Solid club player. Knows openings and simple tactical combinations.',
     color: '#3b82f6',
     blunderRate: 0.15,
-    movetime: 600
+    movetime: 120
   },
   hard: {
     id: 'hard',
     name: 'Hard',
     elo: 1600,
-    depth: 6,
+    depth: 3,
     description: 'Advanced tournament player. Strong tactical and positional play.',
     color: '#8b5cf6',
     blunderRate: 0.04,
-    movetime: 900
+    movetime: 160
   },
   expert: {
     id: 'expert',
     name: 'Expert',
     elo: 2000,
-    depth: 8,
+    depth: 4,
     description: 'Candidate Master level. Punishes any inaccuracy immediately.',
     color: '#d97706',
     blunderRate: 0.0,
-    movetime: 1200
+    movetime: 200
   },
   master: {
     id: 'master',
     name: 'Master',
     elo: 2400,
-    depth: 12,
+    depth: 4,
     description: 'Grandmaster strength engine. Relentless calculation and strategy.',
     color: '#dc2626',
     blunderRate: 0.0,
-    movetime: 1600
+    movetime: 250
   }
 };
 

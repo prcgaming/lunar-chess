@@ -1,4 +1,4 @@
-﻿// Unified Chess AI Hook (Stockfish + Minimax Heuristics)
+// Unified Chess AI Hook (Stockfish + Minimax Heuristics)
 import { useState, useCallback, useRef } from 'react';
 import { findBestMove } from '../chess-engine/engineFallback';
 import { DIFFICULTY_LEVELS } from '../chess-engine/chessConstants';
@@ -15,8 +15,8 @@ export function useStockfish() {
 
     return new Promise((resolve) => {
       const config = DIFFICULTY_LEVELS[difficulty] || DIFFICULTY_LEVELS.medium;
-      // Realistic human-like thinking delay
-      const thinkDelay = Math.max(250, config.movetime || 500);
+      // Ultra-fast AI response delay (smooth but near-instant)
+      const thinkDelay = Math.min(120, Math.max(50, config.movetime ? Math.floor(config.movetime / 4) : 80));
 
       setTimeout(() => {
         if (cancelRef.current) {
