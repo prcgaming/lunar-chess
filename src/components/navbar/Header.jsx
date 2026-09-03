@@ -1,5 +1,5 @@
-﻿import React from 'react';
-import { Moon, Sun, Volume2, VolumeX, BookOpen, Bot, Users, Settings, Home, ArrowLeft } from 'lucide-react';
+import React from 'react';
+import { Moon, Sun, Volume2, VolumeX, BookOpen, Bot, Users, Settings, ArrowLeft, Download } from 'lucide-react';
 import { useSettings } from '../../context/SettingsContext';
 import { useSound } from '../../context/SoundContext';
 import styles from './Header.module.css';
@@ -83,6 +83,16 @@ export function Header({ currentView, setView, showBack = false, onBack }) {
 
         {/* Quick Action Icons */}
         <div className={styles.actions}>
+          <a
+            href="./LunarChess.apk"
+            download="LunarChess.apk"
+            className={styles.downloadHeaderBtn}
+            title="Download Android APK"
+          >
+            <Download size={16} />
+            <span className={styles.apkText}>APK</span>
+          </a>
+
           <button
             className={styles.actionBtn}
             onClick={toggleSound}
@@ -96,7 +106,7 @@ export function Header({ currentView, setView, showBack = false, onBack }) {
             className={styles.actionBtn}
             onClick={toggleTheme}
             aria-label="Toggle light/dark theme"
-            title="Toggle theme"
+            title={settings.theme === 'light' ? 'Dark Theme' : 'Light Theme'}
           >
             {settings.theme === 'light' ? <Moon size={19} /> : <Sun size={19} />}
           </button>

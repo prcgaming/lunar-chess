@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Bot, Users, BookOpen, Settings, Play, Flame, Sparkles, Crown } from 'lucide-react';
+import { Bot, Users, BookOpen, Settings, Play, Flame, Sparkles, Crown, Smartphone, Download } from 'lucide-react';
 import { loadActiveGame } from '../../utilities/storage';
 import { useSound } from '../../context/SoundContext';
 import { useSettings } from '../../context/SettingsContext';
@@ -29,29 +29,21 @@ export function Home({ onNavigate }) {
     }
   };
 
-  const handleQuickTheme = (th) => {
+  const handleQuickTheme = (themeName) => {
     playSound('click');
-    updateSetting('theme', th);
-    if (th === 'classic') {
-      updateSetting('boardTheme', 'classic');
-      updateSetting('pieceStyle', '3d-wood');
-    } else if (th === 'dark') {
-      updateSetting('boardTheme', 'emerald');
-    }
+    updateSetting('theme', themeName);
   };
 
   return (
     <div className={styles.container}>
-      {/* Hero Section */}
+      {/* Hero Header Section with King & Queen */}
       <section className={styles.hero}>
-        <div className={styles.lunarGlow} />
-
         <div className={styles.badge}>
-          <Sparkles size={14} className={styles.sparkleIcon} />
+          <Sparkles size={14} />
           <span>Professional Offline Chess Experience</span>
         </div>
 
-        {/* Title row with 3D King and Queen flanking the title */}
+        {/* Title row flanked by King and Queen */}
         <div className={styles.titleRow}>
           {/* King on the left */}
           <div className={`${styles.royalPiece} ${styles.royalKing}`} title="The King">
@@ -60,6 +52,7 @@ export function Home({ onNavigate }) {
             <div className={styles.pieceLabel}>King</div>
           </div>
 
+          {/* Central Title */}
           <div className={styles.titleCenter}>
             <h1 className={styles.title}>
               LUNAR <span className={styles.highlight}>CHESS</span>
@@ -99,6 +92,21 @@ export function Home({ onNavigate }) {
           >
             ☀️ Crisp Light
           </button>
+        </div>
+
+        {/* Download Android APK Button */}
+        <div className={styles.downloadHeroWrap}>
+          <a
+            href="./LunarChess.apk"
+            download="LunarChess.apk"
+            className={styles.downloadApkBtn}
+            title="Download Android APK"
+          >
+            <Smartphone size={19} />
+            <span>Download Android App (APK)</span>
+            <span className={styles.apkBadge}>Free • 4.2 MB</span>
+            <Download size={16} />
+          </a>
         </div>
 
         {/* Resume Banner */}

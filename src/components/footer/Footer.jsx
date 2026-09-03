@@ -1,5 +1,5 @@
 import React from 'react';
-import { Youtube, ExternalLink } from 'lucide-react';
+import { Youtube, ExternalLink, Smartphone, Download } from 'lucide-react';
 import styles from './Footer.module.css';
 
 export function Footer() {
@@ -7,6 +7,19 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.content}>
+          <div className={styles.apkSection}>
+            <a
+              href="./LunarChess.apk"
+              download="LunarChess.apk"
+              className={styles.apkBtn}
+              title="Download Android APK"
+            >
+              <Smartphone size={16} />
+              <span>Download Android App (APK)</span>
+              <Download size={14} />
+            </a>
+          </div>
+
           <div className={styles.brandGroup}>
             <span className={styles.madeByText}>Made by</span>
             <a

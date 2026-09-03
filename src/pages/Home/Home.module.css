@@ -146,6 +146,46 @@
   color: #ffffff;
 }
 
+/* Download Android APK Button */
+.downloadHeroWrap {
+  margin-top: 14px;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: center;
+}
+
+.downloadApkBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  background: var(--accent-primary);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.92rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.downloadApkBtn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+}
+
+.apkBadge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.25);
+  color: #faf6f0;
+}
+
 /* Resume Banner */
 .resumeBanner {
   display: flex;
