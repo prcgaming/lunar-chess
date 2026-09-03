@@ -14,9 +14,8 @@ export function useStockfish() {
     cancelRef.current = false;
 
     return new Promise((resolve) => {
-      const config = DIFFICULTY_LEVELS[difficulty] || DIFFICULTY_LEVELS.medium;
-      // Ultra-fast AI response delay (smooth but near-instant)
-      const thinkDelay = Math.min(120, Math.max(50, config.movetime ? Math.floor(config.movetime / 4) : 80));
+      // Near-instant 20ms UI tick
+      const thinkDelay = 20;
 
       setTimeout(() => {
         if (cancelRef.current) {
