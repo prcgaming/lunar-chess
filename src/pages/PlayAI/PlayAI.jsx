@@ -325,6 +325,17 @@ export function PlayAI({ onHome }) {
 
       {/* Chessboard View (Maximized in Fullscreen) */}
       <div className={styles.boardArea}>
+        {/* Top Side Pieces Head (AI Engine) */}
+        <div className={`${styles.boardSideIndicator} ${isAiTurn && !gameOver ? styles.activeBoardSide : ''}`}>
+          <div className={styles.boardSideLeft}>
+            <span className={styles.boardSidePiece}>{playerSide === 'w' ? '♚' : '♔'}</span>
+            <span className={styles.boardSideName}>AI ({currentDiffConfig.name})</span>
+          </div>
+          {isAiTurn && !gameOver && (
+            <span className={styles.sideTurnPulse}>{isThinking ? 'Thinking...' : 'To Move'}</span>
+          )}
+        </div>
+
         <ChessboardView
           fen={isReplaying ? replayFen : fen}
           orientation={boardOrientation}
@@ -339,6 +350,15 @@ export function PlayAI({ onHome }) {
           boardWidth={boardWidth}
           arePiecesDraggable={!isReplaying && turn === playerSide && !isThinking && !gameOver}
         />
+
+        {/* Bottom Side Pieces Head (Player) */}
+        <div className={`${styles.boardSideIndicator} ${!isAiTurn && !gameOver ? styles.activeBoardSide : ''}`}>
+          <div className={styles.boardSideLeft}>
+            <span className={styles.boardSidePiece}>{playerSide === 'w' ? '♔' : '♚'}</span>
+            <span className={styles.boardSideName}>You</span>
+          </div>
+          {!isAiTurn && !gameOver && <span className={styles.sideTurnPulse}>To Move</span>}
+        </div>
       </div>
 
       {/* Bottom HUD: Player */}

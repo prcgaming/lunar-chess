@@ -184,31 +184,31 @@ export function LearnHub() {
                 </span>
               </div>
 
-              <div className={styles.lessonGrid}>
+              <div className={styles.bookIndexList}>
                 {categoryLessons.map((lesson) => {
                   const isDone = completed.includes(lesson.id);
+                  const globalIdx = LESSONS.findIndex((l) => l.id === lesson.id) + 1;
+                  const formattedNum = globalIdx < 10 ? `0${globalIdx}` : `${globalIdx}`;
+
                   return (
                     <div
                       key={lesson.id}
-                      className={`${styles.lessonCard} ${isDone ? styles.lessonDone : ''}`}
+                      className={`${styles.bookIndexRow} ${isDone ? styles.bookIndexRowDone : ''}`}
                       onClick={() => handleLessonSelect(lesson)}
                     >
-                      <div className={styles.lessonCardHeader}>
-                        <h4 className={styles.lessonCardTitle}>{lesson.title}</h4>
-                        {isDone ? (
-                          <span className={styles.doneBadge} title="Completed">
-                            <CheckCircle size={16} /> Done
-                          </span>
-                        ) : (
-                          <span className={styles.startBadge}>Start ▶</span>
-                        )}
-                      </div>
-
-                      <p className={styles.lessonCardDesc}>{lesson.subtitle}</p>
-
-                      <div className={styles.cardFooterRow}>
-                        <span className={styles.durationTag}>~2 mins</span>
-                        <span className={styles.categoryTag}>{cat.name}</span>
+                      <div className={styles.bookIndexNumber}>{formattedNum}</div>
+                      <div className={styles.bookIndexContent}>
+                        <div className={styles.bookIndexTitleRow}>
+                          <span className={styles.bookIndexTitle}>{lesson.title}</span>
+                          {isDone ? (
+                            <span className={styles.doneBadge} title="Completed">
+                              <CheckCircle size={14} /> Done
+                            </span>
+                          ) : (
+                            <span className={styles.startBadge}>Start ▶</span>
+                          )}
+                        </div>
+                        <p className={styles.bookIndexDesc}>{lesson.subtitle}</p>
                       </div>
                     </div>
                   );

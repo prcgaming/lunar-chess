@@ -338,6 +338,88 @@
   border-radius: 6px;
 }
 
+/* Book Index Style Layout (100% Mobile Friendly) */
+.bookIndexList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.bookIndexRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-surface, var(--bg-secondary));
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md, 12px);
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bookIndexRow:hover {
+  border-color: var(--accent-primary, #538d4e);
+  transform: translateX(3px);
+  box-shadow: var(--shadow-md);
+}
+
+.bookIndexRowDone {
+  border-color: rgba(83, 141, 78, 0.4);
+  background: rgba(83, 141, 78, 0.05);
+}
+
+.bookIndexNumber {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent-primary, #538d4e);
+  background: rgba(83, 141, 78, 0.12);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bookIndexContent {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bookIndexTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.bookIndexTitle {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bookIndexDesc {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .lessonGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1132,5 +1214,34 @@
 
   .stepFooterRow button {
     width: 100%;
+  }
+
+  .filterBar {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .filterPill {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+
+  .bookIndexRow {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .bookIndexNumber {
+    width: 28px;
+    height: 28px;
+    font-size: 0.78rem;
+  }
+
+  .bookIndexTitle {
+    font-size: 0.92rem;
+  }
+
+  .bookIndexDesc {
+    font-size: 0.78rem;
   }
 }
