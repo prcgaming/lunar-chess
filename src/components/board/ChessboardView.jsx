@@ -17,7 +17,8 @@ export function ChessboardView({
   kingSquare,
   hint,
   boardWidth,
-  arePiecesDraggable = true
+  arePiecesDraggable = true,
+  flipOpponentPieces = false
 }) {
   const { settings } = useSettings();
   const boardContainerRef = useRef(null);
@@ -27,10 +28,10 @@ export function ChessboardView({
     return BOARD_THEMES.find((t) => t.id === settings.boardTheme) || BOARD_THEMES[0];
   }, [settings.boardTheme]);
 
-  // Dynamic 2D / 3D Custom Pieces
+  // Dynamic 2D / 3D Custom Pieces (with optional 180° flip for opponent)
   const customPieces = useMemo(() => {
-    return getCustomPieces(settings.pieceStyle);
-  }, [settings.pieceStyle]);
+    return getCustomPieces(settings.pieceStyle, flipOpponentPieces, orientation);
+  }, [settings.pieceStyle, flipOpponentPieces, orientation]);
 
   // Animation duration
   const animationDuration = useMemo(() => {

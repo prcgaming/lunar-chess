@@ -55,11 +55,29 @@
   flex-direction: column;
 }
 
+.turnRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .turnLabel {
   font-family: var(--font-heading);
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--text-primary);
+}
+
+.toMoveBadge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: var(--accent-primary, #538d4e);
+  padding: 1px 7px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  animation: pulse 1.5s infinite;
 }
 
 .statusSub {

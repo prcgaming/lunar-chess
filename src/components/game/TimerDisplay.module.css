@@ -1,18 +1,40 @@
-﻿.container {
+.container {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
   background: var(--bg-tertiary);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 6px 14px;
+  padding: 6px 12px;
   transition: all var(--transition-fast);
+  min-width: 96px;
 }
 
 .active {
   background: var(--bg-surface);
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+  border-color: var(--accent-primary, #538d4e) !important;
+  box-shadow: 0 0 14px rgba(83, 141, 78, 0.4) !important;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.toMoveBadge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: var(--accent-primary, #538d4e);
+  padding: 1px 6px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  animation: pulse 1.5s infinite;
 }
 
 .lowTime {
@@ -26,9 +48,9 @@
 }
 
 .label {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
 }
 

@@ -28,7 +28,10 @@ export function SingleTurnClock({
       <div className={styles.playerBadge}>
         <span className={styles.pieceGlyph}>{isWhite ? '♔' : '♚'}</span>
         <div className={styles.playerMeta}>
-          <span className={styles.turnLabel}>{isWhite ? "White's Turn" : "Black's Turn"}</span>
+          <div className={styles.turnRow}>
+            <span className={styles.turnLabel}>{isWhite ? "White" : "Black"}</span>
+            {!gameOver && !isPaused && <span className={styles.toMoveBadge}>To Move</span>}
+          </div>
           <span className={styles.statusSub}>
             {gameOver ? 'Game Over' : isPaused ? 'Clock Paused' : 'Active Clock'}
           </span>

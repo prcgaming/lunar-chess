@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Clock } from 'lucide-react';
 import styles from './TimerDisplay.module.css';
 
@@ -16,9 +16,12 @@ export function TimerDisplay({ seconds, isCurrentTurn, isUnlimited = false, labe
     <div
       className={`${styles.container} ${isCurrentTurn ? styles.active : ''} ${isLowTime ? styles.lowTime : ''}`}
     >
-      {label && <span className={styles.label}>{label}</span>}
+      <div className={styles.topRow}>
+        {label && <span className={styles.label}>{label}</span>}
+        {isCurrentTurn && <span className={styles.toMoveBadge}>To Move</span>}
+      </div>
       <div className={styles.timeBox}>
-        <Clock size={16} className={styles.clockIcon} />
+        <Clock size={15} className={styles.clockIcon} />
         <span className={styles.timeText}>{formatTime(seconds)}</span>
       </div>
     </div>

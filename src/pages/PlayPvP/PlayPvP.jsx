@@ -20,6 +20,7 @@ export function PlayPvP({ onHome }) {
   const [setupOpen, setSetupOpen] = useState(true);
   const [timeControl, setTimeControl] = useState(600);
   const [boardOrientation, setBoardOrientation] = useState('white');
+  const [flipTopPieces, setFlipTopPieces] = useState(true);
   const [boardWidth, setBoardWidth] = useState(480);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [isReplaying, setIsReplaying] = useState(false);
@@ -262,15 +263,6 @@ export function PlayPvP({ onHome }) {
 
       {/* Chessboard Area (Maximized in Fullscreen) */}
       <div className={styles.boardArea}>
-        {/* Top Side Pieces Head (Black) */}
-        <div className={`${styles.boardSideIndicator} ${turn === 'b' && !gameOver ? styles.activeBoardSide : ''}`}>
-          <div className={styles.boardSideLeft}>
-            <span className={styles.boardSidePiece}>♚</span>
-            <span className={styles.boardSideName}>Black</span>
-          </div>
-          {turn === 'b' && !gameOver && <span className={styles.sideTurnPulse}>To Move</span>}
-        </div>
-
         <ChessboardView
           fen={isReplaying ? replayFen : fen}
           orientation={boardOrientation}
@@ -283,16 +275,8 @@ export function PlayPvP({ onHome }) {
           kingSquare={isReplaying ? null : kingInCheckSquare}
           boardWidth={boardWidth}
           arePiecesDraggable={!isReplaying && !gameOver}
+          flipOpponentPieces={flipTopPieces}
         />
-
-        {/* Bottom Side Pieces Head (White) */}
-        <div className={`${styles.boardSideIndicator} ${turn === 'w' && !gameOver ? styles.activeBoardSide : ''}`}>
-          <div className={styles.boardSideLeft}>
-            <span className={styles.boardSidePiece}>♔</span>
-            <span className={styles.boardSideName}>White</span>
-          </div>
-          {turn === 'w' && !gameOver && <span className={styles.sideTurnPulse}>To Move</span>}
-        </div>
       </div>
 
       {/* Bottom Player HUD (Hidden in Fullscreen for maximum board space, visible in normal) */}
@@ -333,6 +317,15 @@ export function PlayPvP({ onHome }) {
 
           <Button variant="glass" size="sm" icon={RefreshCw} onClick={handleFlipOrientation} title="Flip Board Perspective">
             Flip
+          </Button>
+
+          <Button
+            variant={flipTopPieces ? "primary" : "glass"}
+            size="sm"
+            onClick={() => setFlipTopPieces(!flipTopPieces)}
+            title="Flip top pieces 180° so the player across the table sees them right side up"
+          >
+            Flip Top Pieces: {flipTopPieces ? 'ON' : 'OFF'}
           </Button>
 
           {!isUnlimited && (

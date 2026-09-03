@@ -214,26 +214,46 @@ function createPieceSvg({ type, color, style, width }) {
 }
 
 // Generate the customPieces mapping for react-chessboard
-export function getCustomPieces(style = '2d-standard') {
-  if (style === '2d-standard') {
+export function getCustomPieces(style = '2d-standard', flipOpponent = false, orientation = 'white') {
+  if (style === '2d-standard' && !flipOpponent) {
     // Returns undefined so react-chessboard uses its built-in standard SVG set
     return undefined;
   }
+
+  const effectiveStyle = style === '2d-standard' ? '2d-alpha' : style;
+  const opponentColor = orientation === 'white' ? 'b' : 'w';
 
   const pieceTypes = ['p', 'n', 'b', 'r', 'q', 'k'];
   const colors = ['w', 'b'];
   const pieces = {};
 
   colors.forEach((color) => {
+    const isOpponent = color === opponentColor;
+    const shouldRotate = flipOpponent && isOpponent;
+
     pieceTypes.forEach((type) => {
       const key = `${color}${type.toUpperCase()}`;
-      pieces[key] = ({ squareWidth }) =>
-        createPieceSvg({
-          type,
-          color,
-          style,
-          width: squareWidth
-        });
+      pieces[key] = ({ squareWidth }) => (
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            transform: shouldRotate ? 'rotate(180deg)' : 'none',
+            transition: 'transform 0.2s ease',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            pointerEvents: 'none'
+          }}
+        >
+          {createPieceSvg({
+            type,
+            color,
+            style: effectiveStyle,
+            width: squareWidth
+          })}
+        </div>
+      );
     });
   });
 
