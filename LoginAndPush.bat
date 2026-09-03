@@ -1,5 +1,5 @@
 @echo off
-cd /d "%~dp0"
+cd /d "C:\Users\Admin\Desktop\LunarChess"
 cls
 echo ======================================================================
 echo                LUNAR CHESS - AUTOMATIC GITHUB UPLOADER

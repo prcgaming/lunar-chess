@@ -1,0 +1,17 @@
+{
+  "short_name": "Lunar Chess",
+  "name": "Lunar Chess: Play & Learn",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "./",
+  "background_color": "#1c1815",
+  "theme_color": "#538d4e",
+  "display": "standalone",
+  "orientation": "any"
+}
