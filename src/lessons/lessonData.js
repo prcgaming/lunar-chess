@@ -55,7 +55,7 @@ For example:
 - The center four squares are **d4, d5, e4, e5**.
 
 Algebraic chess notation allows players worldwide to record games, follow master analysis, and communicate moves.`,
-    demoFen: 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1',
+    demoFen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
     practice: {
       fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
       instruction: 'Play the most popular opening move in chess history: advance the King pawn to the e4 coordinate square.',
@@ -112,7 +112,7 @@ Algebraic chess notation allows players worldwide to record games, follow master
 - **The "L" Shape**: A Knight moves two squares in one direction (horizontal or vertical) and then one square perpendicular.
 - **Color Switcher**: A Knight always lands on a square of the opposite color from where it began!
 - **Value**: 3 points (equal to a Bishop). Highly dangerous in closed, crowded positions.`,
-    demoFen: '8/8/8/4N3/8/8/8/8 w - - 0 1',
+    demoFen: 'r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3',
     practice: {
       fen: 'r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3',
       instruction: 'Jump your white knight from f3 to capture the undefended black pawn on e5!',
@@ -174,7 +174,7 @@ Algebraic chess notation allows players worldwide to record games, follow master
 - **Straight Lines**: Moves any number of open squares horizontally (along ranks) or vertically (along files).
 - **Endgame Monster**: Rooks shine in the endgame where open files let them invade enemy territory.
 - **Value**: 5 points.`,
-    demoFen: '8/8/8/4R3/8/8/8/8 w - - 0 1',
+    demoFen: '4k3/8/8/8/8/8/8/4R1K1 w - - 0 1',
     practice: {
       fen: '4k3/8/8/8/8/8/8/4R1K1 w - - 0 1',
       instruction: 'Check the black King along the open e-file using your Rook on e1!',
@@ -200,7 +200,7 @@ Algebraic chess notation allows players worldwide to record games, follow master
 - **Omnidirectional**: Can move any number of vacant squares in any direction: horizontally, vertically, or diagonally.
 - **Constraint**: Cannot jump over pieces (only the Knight can do that).
 - **Value**: 9 points. Protect your Queen carefully!`,
-    demoFen: '8/8/8/4Q3/8/8/8/8 w - - 0 1',
+    demoFen: 'r1bqkb1r/pppp1ppp/2n5/4p3/2B1n3/5Q2/PPPP1PPP/RNB1K1NR w KQkq - 0 4',
     practice: {
       fen: 'r1bqkb1r/pppp1ppp/2n5/4p3/2B1n3/5Q2/PPPP1PPP/RNB1K1NR w KQkq - 0 4',
       instruction: 'Deliver Scholar\'s Mate! Deliver checkmate on f7 with your Queen from f3!',
@@ -232,7 +232,7 @@ Algebraic chess notation allows players worldwide to record games, follow master
 - **Danger Zone**: A King can NEVER move onto a square attacked by an enemy piece.
 - **King Separation**: Two Kings may never stand on adjacent squares touching each other.
 - **Value**: Priceless! (Infinity).`,
-    demoFen: '8/8/8/4K3/8/8/8/8 w - - 0 1',
+    demoFen: '8/8/8/3k4/4P3/8/4K3/8 b - - 0 1',
     practice: {
       fen: '8/8/8/3k4/4P3/8/4K3/8 b - - 0 1',
       instruction: 'Your black King is in check from the white pawn on e4. Step your King forward to e4 to capture the attacker!',
@@ -264,7 +264,7 @@ Algebraic chess notation allows players worldwide to record games, follow master
 - **Pawn Exception**: Pawns move straight forward but capture diagonally forward.
 - **No Self-Capture**: You can never capture your own pieces.
 - **Capturing is Optional**: Unlike checkers, capturing is NEVER mandatory in chess.`,
-    demoFen: '8/8/8/3p4/4P3/8/8/8 w - - 0 1',
+    demoFen: 'r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3',
     practice: {
       fen: 'r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3',
       instruction: 'Capture the black pawn on e5 with your knight on f3!',
@@ -327,7 +327,7 @@ You MUST escape check on your very next turn. There are only three ways to escap
 2. The player has **no legal moves** to escape (cannot Capture, Protect, or Run).
 
 When Checkmate occurs, the game ends **instantly**. You do not capture the King; the King is trapped, and victory is yours!`,
-    demoFen: 'r1bqkb1r/pppp1Qpp/2n5/4p3/2B1n3/8/PPPP1PPP/RNB1K1NR b KQkq - 0 4',
+    demoFen: '6k1/5ppp/8/8/8/8/8/R5K1 w - - 0 1',
     practice: {
       fen: '6k1/5ppp/8/8/8/8/8/R5K1 w - - 0 1',
       instruction: 'Deliver the classic "Back Rank Mate"! Move your Rook from a1 to a8 to deliver checkmate!',
@@ -391,7 +391,7 @@ Common ways a draw occurs:
 2. Their King is **NOT in check**.
 
 Even if you have a Queen, two Rooks, and 5 Pawns ahead, if you leave your opponent with no legal moves while not putting them in check, the game instantly ends as a **DRAW (½ - ½)**! Always watch out for stalemate!`,
-    demoFen: 'k7/2Q5/1K6/8/8/8/8/8 b - - 0 1',
+    demoFen: 'k7/8/1K6/8/8/8/8/7Q w - - 0 1',
     practice: {
       fen: 'k7/8/1K6/8/8/8/8/7Q w - - 0 1',
       instruction: 'Avoid stalemate! Instead of trapping the King without check, deliver checkmate: move Queen from h1 to a8!',
@@ -427,7 +427,7 @@ Even if you have a Queen, two Rooks, and 5 Pawns ahead, if you leave your oppone
 2. All squares between them are completely empty.
 3. The King is NOT currently in check.
 4. The King does NOT pass through or land on an attacked square.`,
-    demoFen: 'r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w KQkq - 0 1',
+    demoFen: 'r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/3P1N2/PPP2PPP/RNBQK2R w KQkq - 0 5',
     practice: {
       fen: 'r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/3P1N2/PPP2PPP/RNBQK2R w KQkq - 0 5',
       instruction: 'Protect your white King! Castle kingside by moving your King from e1 to g1.',
@@ -519,7 +519,7 @@ A pawn can NEVER promote to a King or remain a pawn. You can promote as many paw
 3. **King Safety**: Castle early to tuck your King into safety and connect your Rooks.
 
 **What NOT to do**: Don't bring your Queen out too early, and avoid moving the same piece multiple times in the opening.`,
-    demoFen: 'r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/2NP1N2/PPP2PPP/R1BQK2R b KQkq - 0 5',
+    demoFen: 'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2',
     practice: {
       fen: 'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2',
       instruction: 'Develop your Kingside Knight to f3 to attack Black\'s center pawn on e5!',
@@ -550,7 +550,7 @@ A pawn can NEVER promote to a King or remain a pawn. You can promote as many paw
 - **The Knight Fork**: Knights are the deadliest forkers because they jump and can attack Queens and Kings without being captured in return.
 - **Pawn Fork**: Even a humble pawn can fork two minor pieces!
 - Since your opponent can only respond to one threat per move, you are guaranteed to capture the second target!`,
-    demoFen: '8/8/8/4n3/8/8/8/8 w - - 0 1',
+    demoFen: 'r1bqk2r/pppp1ppp/8/4n3/1b2P3/2N5/PPPP1PPP/R1BQKB1R w KQkq - 0 5',
     practice: {
       fen: 'r1bqk2r/pppp1ppp/8/4n3/1b2P3/2N5/PPPP1PPP/R1BQKB1R w KQkq - 0 5',
       instruction: 'Spot the royal fork! Jump your Knight from c3 to d5 to fork the Black Queen and Bishop!',
@@ -576,7 +576,7 @@ A pawn can NEVER promote to a King or remain a pawn. You can promote as many paw
 - **Absolute Pin**: The piece pinned is protecting the **King**. Moving it would be illegal!
 - **Relative Pin**: The piece pinned protects a Queen or Rook. Moving it is legal, but will cause catastrophic material loss.
 - Only long-range sliders can create pins: **Bishops, Rooks, and Queens**.`,
-    demoFen: '4k3/8/8/8/4r3/8/8/4R1K1 w - - 0 1',
+    demoFen: '4k3/8/8/4r3/8/8/8/4R1K1 w - - 0 1',
     practice: {
       fen: '4k3/8/8/4r3/8/8/8/4R1K1 w - - 0 1',
       instruction: 'The black rook on e5 is in an absolute pin to its King! Capture it with your Rook on e1!',
@@ -608,7 +608,7 @@ A pawn can NEVER promote to a King or remain a pawn. You can promote as many paw
 2. When the high-value piece is forced to move out of danger, it exposes a less valuable piece behind it to capture!
 
 Skewers are devastating weapons in endgames with Rooks and Queens along open files and ranks.`,
-    demoFen: '8/8/8/8/8/8/8/K2k3r w - - 0 1',
+    demoFen: '8/8/8/8/8/8/4K3/R3k2r w - - 0 1',
     practice: {
       fen: '8/8/8/8/8/8/4K3/R3k2r w - - 0 1',
       instruction: 'The enemy King and Rook are on the same 1st rank. Deliver a skewer: move Rook to a1 to check the King on e1!',
@@ -672,7 +672,7 @@ Skewers are devastating weapons in endgames with Rooks and Queens along open fil
 - Therefore, **the King is FORCED to move!**
 
 If the King has no safe flight squares, it is instantly Checkmate!`,
-    demoFen: '4k3/4N3/8/8/8/8/8/4R1K1 w - - 0 1',
+    demoFen: '4k3/8/8/4N3/8/8/8/4R1K1 w - - 0 1',
     practice: {
       fen: '4k3/8/8/4N3/8/8/8/4R1K1 w - - 0 1',
       instruction: 'Deliver a double check! Leap your Knight to c6. Both the Knight and the Rook check the King simultaneously!',
@@ -708,7 +708,7 @@ If the King has no safe flight squares, it is instantly Checkmate!`,
   1. Cut off the enemy King along ranks or files.
   2. Use your King to achieve "Opposition" (facing the enemy King with one square between).
   3. Deliver the final blow along the edge.`,
-    demoFen: '8/8/8/4k3/8/8/4K3/4Q3 w - - 0 1',
+    demoFen: 'k7/8/1K6/8/8/8/8/7Q w - - 0 1',
     practice: {
       fen: 'k7/8/1K6/8/8/8/8/7Q w - - 0 1',
       instruction: 'Finish the game! Queen and King corner the lonely black King. Deliver checkmate with Queen to a8 or b7!',

@@ -664,6 +664,13 @@
   flex: 1;
 }
 
+.turnBadgeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
 .instructionLabel {
   font-size: 0.78rem;
   font-weight: 800;
@@ -671,7 +678,16 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   display: block;
-  margin-bottom: 2px;
+}
+
+.turnIndicator {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: var(--bg-surface, var(--bg-secondary));
+  padding: 2px 8px;
+  border-radius: var(--radius-sm, 6px);
+  border: 1px solid var(--border-subtle);
 }
 
 .instructionText p {

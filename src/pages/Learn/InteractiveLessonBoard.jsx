@@ -4,7 +4,7 @@ import confetti from 'canvas-confetti';
 import { ChessboardView } from '../../components/board/ChessboardView';
 import { Button } from '../../components/common/Button';
 import { useSound } from '../../context/SoundContext';
-import { CheckCircle, Lightbulb, RotateCcw, Target, Sparkles } from 'lucide-react';
+import { CheckCircle, Lightbulb, RotateCcw, Target, Sparkles, AlertCircle } from 'lucide-react';
 import styles from './Learn.module.css';
 
 export function InteractiveLessonBoard({ practice, onComplete }) {
@@ -49,24 +49,26 @@ export function InteractiveLessonBoard({ practice, onComplete }) {
   }, [practice]);
 
   const handleMoveAttempt = (from, to) => {
+    if (isSuccess) return false;
+
     try {
       // Validate legal move first
       const move = chess.move({ from, to, promotion: 'q' });
       if (!move) {
         setErrorMessage('That move is not legal according to chess rules. Try again!');
+        playSound('check');
         return false;
       }
-
-      setFen(chess.fen());
-      setLastMove({ from, to });
-      setSelectedSquare(null);
-      setPossibleMoves([]);
 
       // Check if it satisfies the lesson target move
       const exp = practice.expectedMove;
       const matchesTarget = (!exp.from || exp.from === from) && exp.to === to;
 
       if (matchesTarget) {
+        setFen(chess.fen());
+        setLastMove({ from, to });
+        setSelectedSquare(null);
+        setPossibleMoves([]);
         setIsSuccess(true);
         setErrorMessage(null);
         playSound('victory');
@@ -76,16 +78,11 @@ export function InteractiveLessonBoard({ practice, onComplete }) {
         if (onComplete) onComplete();
         return true;
       } else {
-        // Legal move, but not the intended solution for this lesson drill
-        playSound('move');
-        setErrorMessage('Good move, but not the targeted move for this exercise. Try again or check the hint!');
-        setTimeout(() => {
-          const resetInstance = new Chess(practice.fen);
-          setChess(resetInstance);
-          setFen(resetInstance.fen());
-          setLastMove(null);
-        }, 1200);
-        return true;
+        // Legal move, but NOT the targeted solution for this lesson drill
+        chess.undo(); // Undo immediately so board stays in sync!
+        playSound('check');
+        setErrorMessage('Good move, but not the targeted move for this exercise. Try again or click "Show Hint"!');
+        return false; // Snap back immediately in react-chessboard!
       }
     } catch {
       setErrorMessage('Invalid move. Try again!');
@@ -105,7 +102,11 @@ export function InteractiveLessonBoard({ practice, onComplete }) {
     if (selectedSquare) {
       const isTarget = possibleMoves.some((m) => m.to === square);
       if (isTarget) {
-        handleMoveAttempt(selectedSquare, square);
+        const success = handleMoveAttempt(selectedSquare, square);
+        if (success) {
+          setSelectedSquare(null);
+          setPossibleMoves([]);
+        }
         return;
       }
     }
@@ -134,14 +135,22 @@ export function InteractiveLessonBoard({ practice, onComplete }) {
     playSound('click');
   };
 
+  const isWhiteTurn = chess.turn() === 'w';
+
   return (
     <div className={styles.practiceWrapper} ref={containerRef}>
+      {/* Turn indicator & Mission */}
       <div className={styles.instructionBanner}>
         <div className={styles.instructionIcon}>
           <Target size={20} />
         </div>
         <div className={styles.instructionText}>
-          <span className={styles.instructionLabel}>Your Mission:</span>
+          <div className={styles.turnBadgeRow}>
+            <span className={styles.instructionLabel}>Your Mission</span>
+            <span className={styles.turnIndicator}>
+              {isWhiteTurn ? '⚪ White to Play' : '⚫ Black to Play'}
+            </span>
+          </div>
           <p>{practice.instruction}</p>
         </div>
       </div>
@@ -149,7 +158,7 @@ export function InteractiveLessonBoard({ practice, onComplete }) {
       <div className={styles.boardBox}>
         <ChessboardView
           fen={fen}
-          orientation={chess.turn() === 'b' ? 'black' : 'white'}
+          orientation={isWhiteTurn ? 'white' : 'black'}
           onPieceDrop={handleMoveAttempt}
           onSquareClick={onSquareClick}
           selectedSquare={selectedSquare}
@@ -165,12 +174,13 @@ export function InteractiveLessonBoard({ practice, onComplete }) {
       {isSuccess && (
         <div className={styles.successBox}>
           <CheckCircle size={22} color="#538d4e" />
-          <span>Brilliant! You mastered this drill!</span>
+          <span>Brilliant! Move executed perfectly!</span>
         </div>
       )}
 
       {errorMessage && !isSuccess && (
         <div className={styles.errorBox}>
+          <AlertCircle size={18} />
           <span>{errorMessage}</span>
         </div>
       )}
